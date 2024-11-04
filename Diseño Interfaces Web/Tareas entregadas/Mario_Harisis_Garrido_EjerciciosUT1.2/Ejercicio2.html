@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body>
+    <h5>Un típico y complejo formulario</h5>
+    <table border="1px">
+      <tr>
+        <td>Nombre:</td>
+        <td>
+          <input type="text" />
+          <label>F.Nac</label>
+          <input type="date" size="5" />
+          <label for="dni">DNI:</label>
+          <input type="text" size="9" maxlength="9" />
+        </td>
+      </tr>
+      <tr>
+        <td>Apellidos:</td>
+        <td>
+          <input type="text" size="45" />
+        </td>
+      </tr>
+      <tr>
+        <td>Calle y número:</td>
+        <td>
+          <input type="text" size="45" />
+        </td>
+      </tr>
+      <tr>
+        <td>Código Postal:</td>
+        <td>
+          <input type="text" size="5" maxlength="5" />
+          <label for="ciudad">Ciudad:</label>
+          <input type="text" size="30" />
+        </td>
+      </tr>
+      <tr>
+        <td>Provincia:</td>
+        <td>
+          <input type="text" />
+          <label for="telf">Teléfono:</label>
+          <input type="number" size="9" maxlength="9" />
+        </td>
+      </tr>
+      <tr>
+        <td>Opción:</td>
+        <td>
+          <select>
+            <option>OPCION 1</option>
+            <option>OPCION 2</option>
+            <option>OPCION 3</option>
+          </select>
+          <label>Escoja una opción</label>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 100px">
+          <label>Comentarios personales:</label>
+        </td>
+        <td>
+          <textarea rows="2" cols="60"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Pulse aquí:</b></td>
+        <td align="center">
+          <input type="button" value="Enviar datos" />
+          <input type="button" value="Borrar los datos" />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
