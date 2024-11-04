@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Ejercicios funciones</title>
+  </head>
+  <body>
+    <h1>Ejercicios funciones</h1>
+    <form action="" class="formulario">
+      <h3>Calculadora hipotecaria</h3>
+      <div class="container">
+        <div class="form-div">
+          <label>Importe solicitado</label>
+          <input
+            class="form-input__precio"
+            type="number"
+            name="precio"
+            id="precio"
+          />
+        </div>
+        <div class="form-div">
+          <label>Plazo de Amortización</label>
+          <input
+            class="form-input__years"
+            type="number"
+            id="years"
+            max="40"
+            min="10"
+            placeholder="Años"
+          />
+        </div>
+        <div class="form-div">
+          <label>Tipo de interés</label>
+          <input
+            class="form-input__interes"
+            type="number"
+            id="interes"
+            max="10"
+            min="0"
+            step="0.01"
+            placeholder="0.00%"
+          />
+        </div>
+        <div class="form-div">
+          <button class="form-button__submit" type="submit">Enviar</button>
+        </div>
+        <table class="form-table">
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>Cuota anual</th>
+              <th>Amortizado</th>
+              <th>Interés</th>
+              <th>Capital pendiente</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <!-- Añadimos filas aquí con JS -->
+          </tbody>
+        </table>
+      </div>
+    </form>
+    <!-- <script src="Operaciones_funciones1-3.js"></script> -->
+    <script src="Hipoteca.js"></script>
+  </body>
+</html>

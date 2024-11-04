@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    text-align: center;
+}
+input[type="number"]{
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    height: 20px;
+    font-size: large;
+}
+
+.form-input__years{
+    width: 58px;
+}
+
+.form-input__precio{
+    width: 125px;
+}
+
+
+.formulario {
+    background-color: gray;
+    max-width: 600px;
+    max-height: auto;
+    border-radius: 15px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: large;
+}
+.form-div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 5px;
+}
+.form-button__submit {
+    border: none;
+    border-radius: 2px;
+    gap: 10px;
+
+}
+.form-button__submit:hover {
+    background-color: black;
+    color: white;
+}
+.linea {
+    gap: 10px;
+    padding-left: 5px;
+}
+
+.form-table th,
+.form-table td {
+    text-align: center; /* Centra el texto en las celdas */
+    padding: 8px; /* Espaciado interno para mejor legibilidad */
+    border: 1px solid #ccc; /* Añade un borde a las celdas */
+}
