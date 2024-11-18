@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Staatliches&display=swap"
+      rel="stylesheet"
+    />
+    <title>Gestor de tareas</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Formulario de dinamismo</h1>
+        <button class="dark-mode-toggle">🌙</button>
+        <p class="dark-mode__info">Dark Mode</p>
+      </div>
+    </header>
+    <div class="form-container">
+      <div class="form-wrapper">
+        <form action="" class="form">
+          <h2>Introducción datos</h2>
+          <div>
+            <input
+              type="text"
+              placeholder="Título de la tarea"
+              class="form-input"
+              id="titulo"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Descripción de la tarea"
+              class="form-input"
+              id="descripcion"
+            />
+          </div>
+          <div>
+            <select class="form-input" name="form-select" id="select">
+              <option value="" hidden selected>Selecciona prioridad</option>
+              <option value="Alta">Alta</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </div>
+          <div>
+            <input type="date" name="fecha" id="fecha" class="form-input" />
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="prioritaria"
+              id="prioritaria"
+              class="form-checkbox"
+            />
+            <label>Prioritaria</label>
+          </div>
+          <div>
+            <input type="submit" id="agregar" class="form-submit" />
+          </div>
+        </form>
+        <form action="" class="form">
+          <h2>Resultados de búsqueda</h2>
+          <input
+            type="button"
+            value="Todas"
+            id="todas"
+            class="form-button btn-todas"
+          />
+          <input
+            type="button"
+            value="Baja"
+            id="baja"
+            class="form-button btn-baja"
+          />
+          <input
+            type="button"
+            value="Media"
+            id="media"
+            class="form-button btn-media"
+          />
+          <input
+            type="button"
+            value="Alta"
+            id="alta"
+            class="form-button btn-alta"
+          />
+        </form>
+      </div>
+    </div>
+    <h1>Tareas</h1>
+    <div class="tareas-container"></div>
+    <script src="js/Tarea.js"></script>
+  </body>
+</html>

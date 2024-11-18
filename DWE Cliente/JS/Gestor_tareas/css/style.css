@@ -1,0 +1,235 @@
+html {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+h1 {
+    text-align: center;
+}
+.dark-mode-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+    background-color: #404495;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Estilos en modo oscuro */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .form-input,
+  .dark-mode .form-submit,
+  .dark-mode .form-button,
+  .dark-mode .img-btn {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+  }
+  
+  .dark-mode .form-button:hover,
+  .dark-mode .form-input:hover {
+    background-color: #444;
+  }
+
+  .dark-mode .img-btn:hover, 
+  .dark-mode .form-submit:hover {
+    background-color: #404495;
+    color: #e0e0e0;
+
+  }
+  
+  /* Estilos para los mensajes de error y éxito */
+  .dark-mode .error {
+    color: #f6563a;
+  }
+  
+  .dark-mode .exito {
+    color: #00b90c;
+  }
+  
+  .dark-mode .dark-mode-toggle {
+    background-color: #ffffff;
+    color: #121212;
+    border: 2px solid #121212;
+  }
+  
+  .dark-mode .dark-mode-toggle:hover {
+    background-color: #e0e0e0;
+    color: #121212;
+  }
+  
+  .dark-mode .dark-mode-toggle:active {
+    background-color: #ffffff;
+    color: #121212;
+    border: 2px solid #121212;
+  }
+  
+  /* Tareas en dark-mode */
+  .dark-mode .tareas {
+    background-color: #333333;
+    border-color: #555;
+  }
+  
+  .dark-mode .tareas-content {
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .tareas img {
+    filter: brightness(0.8); /* Reduce el brillo de las imágenes en modo oscuro */
+  }
+  
+/* Formulario */
+.form h2 {
+    text-align: center;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.form {
+    flex: 1 1 48%;
+    min-width: 350px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border-color: grey;
+}
+
+.form-input {
+    width: 100%;
+    height: 30px;
+    background-color: #f1f1ef;
+    border-radius: 5px;
+    border-color: rgb(169, 166, 166);
+    border: none;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.form-input:hover {
+    cursor: pointer;
+}
+
+.form-submit {
+    color: white;
+    background-color: #396eef;
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+}
+
+.form-submit:hover {
+    background-color: #1654ec;
+    cursor: pointer;
+}
+
+.form-checkbox {
+    margin-top: 15px;
+}
+.form-checkbox {
+    cursor: pointer;
+}
+
+/* Resultados de búsqueda */
+.form-button {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border-color: rgb(169, 166, 166);
+    border: none;
+    margin-top: 15px;
+}
+
+.btn-todas:hover {
+    background-color: #396eef;;
+    cursor: pointer;
+}
+
+.btn-baja:hover {
+    background-color: #89e2a8 ;
+    cursor: pointer;
+}
+.btn-media:hover {
+    background-color: #f3e876
+    ;
+    cursor: pointer;
+}
+.btn-alta:hover {
+    background-color: #f37676;
+    cursor: pointer;
+}
+
+/* Tareas */ 
+
+.tareas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tareas {
+    flex: 1 1 200px;
+    max-width: 250px;
+    border: 2px solid grey;
+    border-radius: 8px;
+}
+
+.tareas-content {
+    margin-left: 5%;
+}
+
+.tareas img {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.img-btn {
+    color: white;
+    background-color: #396eef;
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    height: 30px;
+    margin: 0 0 15px;
+}
+
+.img-btn:hover {
+    background-color: #1654ec;
+    cursor: pointer;
+}
+
+
+/* Parte en JS */ 
+.error {
+    color: #f6563a;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.exito {
+    color: rgb(0, 185, 12);
+    text-align: center;
+    text-transform: uppercase;
+}
