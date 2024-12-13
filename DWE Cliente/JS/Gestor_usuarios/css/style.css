@@ -1,0 +1,347 @@
+body {
+  background-color: #0D1B2A;
+  color: white;
+  font-family: "Josefin Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+a {
+  color: white !important;
+}
+
+nav{
+  border-radius: 10px;
+  background-color: #1B263B;
+}
+
+
+
+/* Hamburguesa */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23FFFFFF' viewBox='0 0 30 30'><path stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
+.collapse.show .nav-item {
+  margin-top: 1rem;
+}
+
+/* Buscador */
+.inputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.collapse.show .inputContainer {
+  margin-top: 2rem; /* Margen superior al input de busqueda
+  cuando está en hamburguesa */
+}
+
+
+#buscador {
+  border: 2px solid;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: black;
+  font-weight: 500;
+  outline: none;
+  caret-color: #506eec;
+  transition-duration: .3s;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.userIcon {
+  position: absolute;
+  fill: #506eec;
+  width: 12px;
+  top: -30px;
+  left: -15px;
+  opacity: 0;
+  transition: .2s linear;
+}
+
+.usernameLabel {
+  position: absolute;
+  top: -30px;
+  left: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  transition: .2s linear;
+  opacity: 0;
+}
+
+#buscador:focus ~ .usernameLabel,
+#buscador:valid ~ .usernameLabel {
+  transform: translateX(20px);
+  opacity: 1;
+}
+
+#buscador:focus ~ .userIcon,
+#buscador:valid ~ .userIcon {
+  transform: translateX(20px);
+  opacity: 1;
+}
+
+#buscador:focus,
+#buscador:valid {
+  background-color: #ddd;
+  transition-duration: .3s;
+}
+
+.btn-secondary,
+.form-select {
+  background-color: #1B263B !important;
+  color: white !important;
+  border-color: #0D1B2A !important;
+  border: none;
+}
+
+.form-select:hover{
+  background-color: #415A77 !important;
+  cursor: pointer;
+}
+
+/* Carta */
+.custom-card {
+    background-color: #1B263B;
+    border-radius: 15px;
+    overflow: hidden;
+}
+  
+.custom-card-body {
+    background-color: #1B263B;
+    text-align: center;
+}
+  
+.custom-card img {
+    background-color: #1B263B;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Formulario de la carta */
+.btn-close {
+  background-color: #415A77 !important;
+}
+.dropdown-menu {
+  background-color: #eef4ed;
+}
+
+
+/* Usuarios */
+
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.focus {
+  background-color: #0D1B2A;
+}
+
+.btn-secondary:hover {
+    background-color: #415A77 !important;
+}
+
+/* SweetAlert */
+
+.swal2-popup {
+  background-color: #1B263B !important; /* Fondo oscuro */
+  color: #FFFFFF !important; /* Texto blanco */
+}
+
+.swal2-confirm {
+    background-color: #415A77 !important; /* !important para sobrescribir cualquier estilo conflictivo */
+    border-color: #415A77 !important;
+}
+  
+  .swal2-confirm:hover {
+    background-color: #0D1B2A !important;
+}
+
+
+/* Formulario "Creación"  */
+.col-3 {
+  background-color: #1B263B;
+  border-radius: 10px;
+  padding: 3%;
+  overflow-x: hidden !important; /* Ocultar barra desp. lateral */
+}
+
+/* Botón registrar usuario */
+.animated-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #506eec;
+    box-shadow: 0 0 0 2px #506eec;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button svg {
+    position: absolute;
+    width: 24px;
+    fill: #506eec;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .arr-1 {
+    right: 16px;
+  }
+  
+  .animated-button .arr-2 {
+    left: -25%;
+  }
+  
+  .animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #506eec;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+  }
+  
+  .animated-button:hover .arr-1 {
+    right: -25%;
+  }
+  
+  .animated-button:hover .arr-2 {
+    left: 16px;
+  }
+  
+  .animated-button:hover .text {
+    transform: translateX(12px);
+  }
+  
+  .animated-button:hover svg {
+    fill: #212121;
+  }
+  
+  .animated-button:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px #506eec;
+  }
+  
+  .animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+  }
+  
+
+/* Checkbox VIP */ 
+.checkbox-wrapper-46 input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+  
+  .checkbox-wrapper-46 .cbx {
+    margin: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+  .checkbox-wrapper-46 .cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-46 .cbx span:first-child {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #9098a9;
+    transition: all 0.2s ease;
+  }
+  .checkbox-wrapper-46 .cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-46 .cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #506eec;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+  }
+  .checkbox-wrapper-46 .cbx span:last-child {
+    padding-left: 8px;
+  }
+  .checkbox-wrapper-46 .cbx:hover span:first-child {
+    border-color: #506eec;
+  }
+  
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+    background: #506eec;
+    border-color: #506eec;
+    animation: wave-46 0.4s ease;
+  }
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+  }
+  .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(3.5);
+    opacity: 0;
+    transition: all 0.6s ease;
+  }
+  
+  @keyframes wave-46 {
+    50% {
+      transform: scale(0.9);
+    }
+  }
+  
