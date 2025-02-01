@@ -1,0 +1,8 @@
+.list-group-item {
+    flex: 1; /* Equal width for all items */
+    text-align: center; /* Center-align the content */
+}
+
+.button-container {
+    text-align: center;
+}
