@@ -1,0 +1,11 @@
+Alejandro Martínez López, 612345678, alejandro.martinez.lopez@example.com
+Lucía Fernández Torres, +34687890123, lucia.fernandez.torres@example.com
+Daniel Rodríguez Sánchez, +34654321987, daniel.rodriguez.sanchez@example.com
+Sofía Gómez Morales, +34679123456, sofia.gomez.morales@example.com
+Marcos Pérez Herrera, +34698765432, marcos.perez.herrera@example.com
+usuario,45465456,correo@correo.com
+usuario,45465456,correo@correo.com
+Nombre,500,correo@correo.com
+njbvjbtrvbi,Sin datos,correo@correo.com
+crecrvtvtdvvtrv,800,Sin datos
+mario,Sin datos,Sin datos
