@@ -1,0 +1,32 @@
+html, body {
+    font-family: "Bona Nova SC", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container {
+    background-color: rgb(111, 29, 18);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.nav {
+    justify-content: center;
+}
+
+.nav-link {
+    color: white;
+}
+h4 {
+    text-align: center;
+    font-size: xx-large;
+}
+h5 {
+    color: white;
+}
+
+table {
+    border-radius: 10px;
+    overflow: hidden; /* bordes internos también redondeados */
+    border-collapse: separate; /* Evitar que las celdas se junten y pierdan el redondeo */
+}
