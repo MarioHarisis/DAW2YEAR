@@ -1,0 +1,69 @@
+body {
+    background-color: #F9C74F; /* Fondo cálido y alegre */
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #F94144;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #00f5d4;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    padding: 10px;
+}
+
+h4 {
+    font-family: "Anton", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+.container {
+    background-color: #8338EC; /* Verde suave para un fondo amigable */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
+    flex: 1;
+    text-align: center;
+    background-color: #8338EC;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn {
+    width: 100%;
+    background-color: #3A86FF; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #00f5d4;
+}
+
+.seleccionadaText {
+    font-family: "Anton", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: larger;
+    color: #F9C74F;
+    border-radius: 5px;
+}
