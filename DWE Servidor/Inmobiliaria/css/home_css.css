@@ -1,0 +1,38 @@
+body {
+    background-color: #252d74;
+    color: white;
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+
+}
+img {
+    border-radius: 10px;
+}
+
+a {
+    color: white !important;
+}
+.navbar {
+    background: linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b) !important;
+}
+.home-img {
+    width: 70%;
+}
+.main-container {
+    background-color:white;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1)
+}
+.btn {
+    width: 400px;
+    height: 50px;
+    background: linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b) !important;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1)
+}
+
+.dropdown-item {
+    color: black !important;
+}

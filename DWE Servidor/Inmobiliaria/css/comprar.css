@@ -1,0 +1,57 @@
+body {
+    background-color: #252d74;
+    color: white;
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+img {
+    border-radius: 10px;
+    max-height: 400px;
+}
+
+a {
+    color: white !important;
+}
+.navbar {
+    background: linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b) !important;
+}
+
+.navbar-toggler-icon {
+    color: white !important;
+}
+
+.navbar-toggler {
+    color: white;
+}
+
+.home-img {
+    width: 70%;
+}
+.main-container {
+    background-color:white;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1)
+}
+.btn {
+    width: auto;
+    height: 50px;
+    background: linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b) !important;
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+.card {
+    min-height: 100%;
+    min-width: 350px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+}

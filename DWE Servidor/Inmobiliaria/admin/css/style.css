@@ -1,0 +1,28 @@
+html, body {
+    font-family: "Bona Nova SC", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+h2 {
+    text-align: center;
+    margin-top: 5%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+.container {
+    border-radius: 10px;
+    border: 1px solid;
+}
+
+form{
+    padding: 15px;
+}
+/* Quitar flechas input */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
