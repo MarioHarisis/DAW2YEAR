@@ -223,35 +223,3 @@ function comprobarStock(producto) {
     stockText.textContent = " ";
   }
 }
-// Al cargar la página, recupera los usuarios de sessionStorage
-/* document.addEventListener("DOMContentLoaded", () => {
-  const usuariosGuardados = sessionStorage.getItem("listaUsuarios");
-  if (usuariosGuardados) {
-    listaUsuarios = JSON.parse(usuariosGuardados); // Convierte el string a un array
-    listaUsuarios.forEach((usuario) => crearCartaUsuario(usuario));
-  }
-}); */
-
-// Función para guardar usuarios en sessionStorage
-function guardarUsuariosEnSession() {
-  sessionStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
-}
-
-// Función para mostrar las alert
-function mostrarAlert(option, text) {
-  if (option == "success") {
-    return Swal.fire({
-      icon: "success",
-      title: `${text}`,
-      showConfirmButton: false,
-      timer: 1200,
-    });
-  } else {
-    return Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: `${text}`,
-      confirmButtonColor: "#415A77",
-    });
-  }
-}
