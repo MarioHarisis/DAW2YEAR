@@ -43,6 +43,7 @@ function mostrarProductos(lista) {
   cardContainer.innerHTML = "";
   lista.forEach((producto) => {
     cardContainer.appendChild(crearCartaProducto(producto)); //añadir cada carta al main
+    comprobarStock(producto); // comprobar todos los stock
   });
 }
 
@@ -78,12 +79,6 @@ function crearCartaProducto(producto) {
         </button>
   `;
 
-  if (producto.stock <= 5) {
-    let stockRow = nuevoProducto.querySelector(".stock-text");
-    stockRow.classList.add("text-danger");
-    stockRow.textContent = `Quedan ${producto.stock} en stock`;
-  }
-
   // boton "añadir al carrito" dentro de las card
   const btnCarrito = nuevoProducto.querySelector(".btn-carrito");
 
@@ -100,16 +95,29 @@ function crearCartaProducto(producto) {
       let precioCarrito = (producto.precio * producto.cantidad).toFixed(2);
 
       // Actualizar la fila correspondiente en la tabla (buscando la fila del producto)
-      const row = tBody.querySelector(`[data-id="${producto.id}"]`);
+      const row = tBody.querySelector(`[data-id="${producto.id}"]`); // seleccionar fila a editar
       row.querySelector(".cantidad").textContent = producto.cantidad;
       row.querySelector(".precio").textContent = precioCarrito;
+
+      /* tambien podríamos: en este caso seleccionaríamos los text directamente
+
+      const cantidadText = tBody.querySelector(`[data-id="${producto.id}"] .cantidad`);
+      const precioText = tBody.querySelector(`[data-id="${producto.id}"] .precio`); 
+      cantidadText.textContent = producto.cantidad;
+      precioText.textContent = precioCarrito;
+
+      */
     } else {
       producto.cantidad = 1;
 
       // se dibuja si no estaba previamente
       const carritoRow = document.createElement("tr");
       carritoRow.setAttribute("data-id", producto.id); // Usar el id para identificar la fila
-      carritoRow.classList.add("animate__animated", "animate__backInLeft");
+      carritoRow.classList.add(
+        "animate__animated",
+        "animate__backInLeft",
+        "carritoRow"
+      );
       carritoRow.innerHTML = `
       <td>${producto.titulo}</td>
       <td class="cantidad">${producto.cantidad}</td>
@@ -122,11 +130,6 @@ function crearCartaProducto(producto) {
   });
 
   return nuevoProducto; // devolver el html que se insertará en el cardContainer;
-}
-
-function eliminarProducto(id) {
-  // Filtra nueva lista sin el producto pasado por param
-  productos.filter((producto) => producto.id !== id);
 }
 
 // evento boton Comprar de carrito
@@ -167,7 +170,7 @@ btnComprar.addEventListener("click", () => {
         // si lo ecnuentra, reducir el stock
         if (productoStock) {
           productoStock.stock -= prod.cantidad;
-          comprobarStock(prod);
+          comprobarStock(prod); // comprobamos el nuevo stock
         }
       });
 
@@ -177,12 +180,40 @@ btnComprar.addEventListener("click", () => {
   });
 });
 
-// comprobar existencias visibles
+tBody.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-eliminar")) {
+    // verificar si el botón pulsado es un eliminar
+
+    const filaEliminar = e.target.closest("tr"); // seleccionar fila del producto
+    const idProducto = filaEliminar.getAttribute("data-id");
+    let cantidadCarritoRow = filaEliminar.querySelector(".cantidad");
+
+    let producto = listaCarrito.find((prod) => prod.id == idProducto); // encontrar producto en listaCarrito
+    if (producto) {
+      producto.cantidad--; // restar 1 en cantidad
+
+      if (producto.cantidad == 0) {
+        // eliminar si se queda en 0
+        listaCarrito = listaCarrito.filter((prod) => prod.id != producto.id); // sacar de la lista
+        filaEliminar.remove(); //eliminar el tr
+      } else {
+        cantidadCarritoRow.textContent = `${producto.cantidad}`; //modificar la cantidad en carrito
+      }
+    } else {
+      console.log("No se encontró el producto en el carrito");
+      return;
+    }
+  }
+});
+
+// comprobar existencias
 function comprobarStock(producto) {
   // informar de stock bajo en producto
   let stockText = document.querySelector(
-    `[data-id="${producto.id}"] .stock-text`
+    `[data-id="${producto.id}"] .stock-text` // encontrar el campo .stock-text por id
   );
+
+  stockText.classList.add("text-danger"); // establecer color texto stock
 
   if (producto.stock == 0) {
     stockText.textContent = "Fuera de stock";
