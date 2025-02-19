@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Staatliches&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <head>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet"
+      />
+    </head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Tienda de productos</title>
+  </head>
+  <body>
+    <main class="container-fluid">
+      <div class="col-12">
+        <h1 class="text-center mt-3">Tienda de productos</h1>
+      </div>
+      <div class="row">
+        <!-- Usuarios-->
+        <div class="col-8" id="productos">
+          <h2>Productos</h2>
+          <!-- Navegacion-->
+          <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid">
+              <!-- Botón hamburguesa -->
+              <button
+                class="navbar-toggler"
+                type="button"
+                id="hamburguesa"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      aria-current="page"
+                      href="./index.html"
+                    >
+                      <i class="fas fa-house fa-lg"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item dropdown ms-5">
+                    <select
+                      class="form-select genero"
+                      id="filtro"
+                      aria-label="Default select example"
+                    >
+                      <option selected hidden value="0">Género</option>
+                      <option value="1" id="hombre">Hombre</option>
+                      <option value="2" id="mujer">Mujer</option>
+                    </select>
+                  </li>
+                  <li class="nav-item dropdown ms-5">
+                    <select
+                      class="form-select departamento"
+                      id="filtro-2"
+                      aria-label="Default select example"
+                    >
+                      <option selected hidden value="0">Departamento</option>
+                      <option value="Ventas" id="1">Ventas</option>
+                      <option value="RRHH" id="2">RRHH</option>
+                      <option value="Desarrollo" id="3">Desarrollo</option>
+                    </select>
+                  </li>
+                  <li class="nav-item dropdown ms-5">
+                    <button
+                      type="submit"
+                      class="btn btn-secondary btn-submit"
+                      id="btn-vip"
+                    >
+                      VIP
+                    </button>
+                  </li>
+                  <li class="nav-item dropdown ms-5">
+                    <button
+                      type="submit"
+                      class="btn btn-secondary btn-submit"
+                      id="btn-no-vip"
+                    >
+                      NO VIP
+                    </button>
+                  </li>
+                </ul>
+                <div class="inputContainer">
+                  <input
+                    required="required"
+                    id="buscador"
+                    placeholder="Buscar producto"
+                    type="text"
+                  />
+                  <label class="usernameLabel" for="buscador"
+                    >Nombre del producto</label
+                  >
+                  <svg viewBox="0 0 448 512" class="userIcon">
+                    <path
+                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Aquí se mostrarán el numero de resultados -->
+          <div id="mensaje-container" class="mb-3 mt-2"></div>
+
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
+            id="card-container"
+          ></div>
+          <!-- Creación y espacio donde entran las card -->
+        </div>
+
+        <!-- Carrito-->
+        <div class="col col-carrito mt-5 h-100 overflow-auto">
+          <h2>Carrito</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+              <!-- Aquí los productos que se agregan al carrito -->
+            </tbody>
+          </table>
+          <button class="animated-button mt-4">
+            <svg
+              viewBox="0 0 24 24"
+              class="arr-2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+            <span class="text">Comprar</span>
+            <span class="circle"></span>
+            <svg
+              viewBox="0 0 24 24"
+              class="arr-1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="../js/producto.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
