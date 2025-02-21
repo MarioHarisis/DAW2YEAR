@@ -1,6 +1,7 @@
 const tBody = document.querySelector(".tbody"); // seleccionar body de tabla carrito
 const buscador = document.querySelector("#buscador");
 const mensajeContainer = document.querySelector("#mensaje-container");
+const navbarNav = document.querySelector(".navbar-nav");
 
 const url = "https://dummyjson.com/products";
 let productos = [];
@@ -44,8 +45,8 @@ async function consultaProductos() {
     productos.push(producto);
   });
   mostrarProductos(productos);
-  crearFiltros(listaCategoria, "categoria");
-  crearFiltros(listaMarca, "marca");
+  crearFiltros(listaCategoria, "Categoria");
+  crearFiltros(listaMarca, "Marca");
 }
 
 function mostrarProductos(lista) {
@@ -390,67 +391,86 @@ function mostrarAlert(option, text) {
   }
 }
 
-// creación de filtros en nav
-const navbarNav = document.querySelector(".navbar-nav");
+// relleno de filtros en nav
 function crearFiltros(lista, tipo) {
-  const navItem = document.createElement("li");
-  navItem.classList.add("nav-item", "dropdown", "ms-5");
-  navItem.innerHTML = `
-  <select
-    class="form-select ${tipo}"
-    id="filtro"
-    aria-label="Default select example"
-  >
-    <option selected hidden value="0">${tipo}</option>
-    </select>
-    `;
-  const select = navItem.querySelector(`.${tipo}`);
+  const select = document.querySelector(`#${tipo}`);
   lista.forEach((element) => {
     select.appendChild(createOption(element, element));
   });
-  navbarNav.appendChild(navItem);
 }
 
-// editar dropdown de marca según categoría seleccionada
-navbarNav.addEventListener("click", (e) => {
-  const categoriaSelected = listaCategoria.find(
-    (cat) => cat == e.target.value // encontrar la categoria que ha sido seleccionada
-  );
+// listener select categorias y marcas
+let categoriaSeleccionada = 0;
+const selectCategoria = document.querySelector("#Categoria");
+selectCategoria.addEventListener("click", (e) => {
+  categoriaSeleccionada = e.target.value;
+  console.log(categoriaSeleccionada);
 
-  if (categoriaSelected) {
-    console.log(categoriaSelected);
-
+  // comprobar que no se seleccionan todas la scategorias
+  if (categoriaSeleccionada != 0) {
     let prodEnCategoria = productos.filter(
-      (prod) => prod.categoria == categoriaSelected // crear lista con productos que tengan esta categoria
+      (prod) => prod.categoria == categoriaSeleccionada // crear lista con productos que tengan esta categoria
     );
 
     // cambiar las marcas que aparecen dependiendo de la categoría seleccionada
-    const select = navbarNav.querySelector(".marca");
-    select.innerHTML = ``;
-    select.appendChild(createOption(0, "Todos")); // primera opción nula
+    const selectMarca = document.querySelector("#Marca");
+    selectMarca.innerHTML = ``;
 
-    prodEnCategoria.forEach((element) => {
-      console.log(element);
+    // Agregar opción por defecto
+    selectMarca.appendChild(createOption(0, "Todas las marcas"));
+
+    prodEnCategoria.forEach((prod) => {
+      console.log(prod);
       // crear opción para cada marca y agregarlo al select
-      select.appendChild(createOption(element.marca, element.marca));
+      selectMarca.appendChild(createOption(prod.marca, prod.marca));
     });
+  }
+});
 
-    // listener botón filtros
-    document.querySelector(".btn-filtros").addEventListener("click", () => {
-      const marcaSeleccionada = select.value; // ver la marca que se ha seleccionado
-      mensajeContainer.textContent = `Mostrando productos: ${marcaSeleccionada}`;
+// listener marcas
+let marcaSeleccionada = 0;
+const selectMarca = document.querySelector("#Marca");
+selectMarca.addEventListener("click", (e) => {
+  marcaSeleccionada = e.target.value; // ver la marca que se ha seleccionado
+  console.log(marcaSeleccionada);
+});
 
-      if (marcaSeleccionada != 0) {
-        // mostrar solo productos con la marca seleccionada
-        let prodConMarca = prodEnCategoria.filter(
-          (prod) => prod.marca == marcaSeleccionada
-        );
-        mostrarProductos(prodConMarca);
-      } else {
-        //mostrar todos si no se ha seleccionado marca
-        mostrarProductos(prodEnCategoria);
-      }
-    });
+// listener botón filtros
+document.querySelector(".btn-filtros").addEventListener("click", () => {
+  console.log(categoriaSeleccionada);
+  console.log(marcaSeleccionada);
+
+  if (categoriaSeleccionada == 0) {
+    // SIN categoría
+    if (marcaSeleccionada == 0) {
+      mostrarProductos(productos); // mostrar todos los productos
+    } else {
+      // si se selecciona SOLO marca
+
+      let listaMarca = productos.filter(
+        (prod) => prod.marca == marcaSeleccionada
+      );
+      mostrarProductos(listaMarca); // mostrar por marca
+    }
+  } else {
+    // si se selecciona categoria
+
+    let listaCategoria = productos.filter(
+      (prod) => prod.categoria == categoriaSeleccionada
+    );
+
+    if (marcaSeleccionada == 0) {
+      // SIN marca CON categoría
+      // SOLO categoría SIN marca
+      mostrarProductos(listaCategoria);
+    } else {
+      // CON categoría CON marca
+
+      let listaMarca = listaCategoria.filter(
+        (prod) => prod.marca == marcaSeleccionada
+      );
+      mostrarProductos(listaMarca); // mostrar prod que coincidan con categoria y con marca
+    }
   }
 });
 
