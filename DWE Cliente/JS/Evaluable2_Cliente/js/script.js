@@ -1,12 +1,12 @@
 const tBody = document.querySelector(".tbody"); // seleccionar body de tabla carrito
-const buscador = document.querySelector("#buscador");
 const mensajeContainer = document.querySelector("#mensaje-container");
 const navbarNav = document.querySelector(".navbar-nav");
+const cardContainer = document.querySelector("#card-container");
 
 const url = "https://dummyjson.com/products";
 let productos = [];
 let listaCarrito = [];
-let listaCategoria = []; //Set almacena valores únicos automáticamente
+let listaCategoria = [];
 let listaMarca = [];
 
 // Ejecutar la consulta y mostrar productos al cargar la página
@@ -50,7 +50,6 @@ async function consultaProductos() {
 }
 
 function mostrarProductos(lista) {
-  const cardContainer = document.querySelector("#card-container");
   cardContainer.innerHTML = "";
   lista.forEach((producto) => {
     cardContainer.appendChild(crearCartaProducto(producto)); //añadir cada carta al main
@@ -70,6 +69,7 @@ function crearCartaProducto(producto) {
   );
 
   nuevoProducto.setAttribute("data-id", producto.id); // con esto lo encontraremos depués para organizar stock
+
   nuevoProducto.innerHTML = `
   <div  id=${producto.id} class="card-body custom-card-body ">
   <img src="${producto.imagen}" class="card-img-top" alt="${producto.titulo}" />
@@ -305,14 +305,13 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"
         `,
       });
 
-      // reducir stock de rpodcutos comprados
       listaCarrito.forEach((prod) => {
         //encontrar y almacenar el producto al que quitar stock
         const productoStock = productos.find(
           (producto) => producto.id === prod.id
         );
 
-        // si lo ecnuentra, reducir el stock
+        // si lo ecnuentra, reducir el stock de rpodcutos comprados
         if (productoStock) {
           productoStock.stock -= prod.cantidad;
           comprobarStock(prod); // comprobamos el nuevo stock
@@ -372,25 +371,6 @@ function comprobarStock(producto) {
   }
 }
 
-// Función para mostrar las alert
-function mostrarAlert(option, text) {
-  if (option == "success") {
-    return Swal.fire({
-      icon: "success",
-      title: `${text}`,
-      showConfirmButton: false,
-      timer: 1200,
-    });
-  } else if (option == "error") {
-    return Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: `${text}`,
-      confirmButtonColor: "#415A77",
-    });
-  }
-}
-
 // relleno de filtros en nav
 function crearFiltros(lista, tipo) {
   const select = document.querySelector(`#${tipo}`);
@@ -435,6 +415,14 @@ selectMarca.addEventListener("click", (e) => {
   console.log(marcaSeleccionada);
 });
 
+// crear opcion para select
+function createOption(value, textContent) {
+  const option = document.createElement("option");
+  option.value = value;
+  option.textContent = textContent;
+  return option;
+}
+
 // listener botón filtros
 document.querySelector(".btn-filtros").addEventListener("click", () => {
   console.log(categoriaSeleccionada);
@@ -474,10 +462,74 @@ document.querySelector(".btn-filtros").addEventListener("click", () => {
   }
 });
 
-// crear opcion para select
-function createOption(value, textContent) {
-  const option = document.createElement("option");
-  option.value = value;
-  option.textContent = textContent;
-  return option;
+//listener btn precios alto y bajo
+document.querySelector(".btn-group").addEventListener("click", (e) => {
+  let domActual = document.querySelectorAll(".card-body");
+  let productosActual = [];
+
+  domActual.forEach((card) => {
+    productos.forEach((prod) => {
+      // encontrar los productos que están en el dom
+      if (card.id == prod.id) {
+        productosActual.push(prod); //agregarlos a la lista para ordenar por precio
+      }
+    });
+  });
+
+  if (e.target.id == "precio-bajo") {
+    // comprobar si se ha seleccionado precio mayor o menor para ordenar
+
+    productosActual.sort((a, b) => a.precio - b.precio); // ordenar por precio MENOR
+  } else {
+    productosActual.sort((a, b) => b.precio - a.precio); // ordenar por precio MAYOR
+  }
+
+  mostrarProductos(productosActual); // dibujar en el dom
+});
+
+// input buscar
+document.querySelector("#buscador").addEventListener("keyup", (e) => {
+  const textoBusqueda = e.target.value.toLowerCase();
+  let listaFiltrada = [];
+
+  if (textoBusqueda.trim() === "") {
+    // Si el texto de búsqueda está vacío, no mostrar mensaje y mostrar todos los productos
+    cardContainer.innerHTML = "";
+    mensajeContainer.innerHTML = "";
+    mostrarProductos(productos);
+  } else {
+    // Filtrar por el texto de busqueda
+    listaFiltrada = productos.filter((prod) =>
+      prod.titulo.toLowerCase().includes(textoBusqueda)
+    );
+    // Evitar duplicación de líneas
+    cardContainer.innerHTML = "";
+    mensajeContainer.innerHTML = "";
+
+    // Crear el mensaje de los resultados
+    const mensajeResultados = document.createElement("p");
+    mensajeResultados.textContent = `Se han encontrado ${listaFiltrada.length} resultado/s sobre \"${textoBusqueda}\".`;
+    mensajeContainer.append(mensajeResultados);
+
+    mostrarProductos(listaFiltrada);
+  }
+});
+
+// Función para mostrar las alert
+function mostrarAlert(option, text) {
+  if (option == "success") {
+    return Swal.fire({
+      icon: "success",
+      title: `${text}`,
+      showConfirmButton: false,
+      timer: 1200,
+    });
+  } else if (option == "error") {
+    return Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${text}`,
+      confirmButtonColor: "#415A77",
+    });
+  }
 }
