@@ -36,104 +36,72 @@
   </head>
   <body>
     <main class="container-fluid">
-      <div class="col-12">
-        <h1 class="text-center mt-3">Tienda de productos</h1>
-      </div>
       <div class="row">
-        <!-- Usuarios-->
-        <div class="col-8" id="productos">
-          <h2>Productos</h2>
-          <!-- Navegacion-->
-          <nav class="navbar navbar-expand-xl">
-            <div class="container-fluid">
-              <!-- Botón hamburguesa -->
-              <button
-                class="navbar-toggler"
-                type="button"
-                id="hamburguesa"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+        <!-- Navegacion-->
+        <nav class="navbar navbar-expand-xl">
+          <div class="container-fluid">
+            <!-- Botón hamburguesa -->
+            <button
+              class="navbar-toggler"
+              type="button"
+              id="hamburguesa"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul
+                class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center"
               >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      aria-current="page"
-                      href="./index.html"
-                    >
-                      <i class="fas fa-house fa-lg"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown ms-5">
-                    <select
-                      class="form-select genero"
-                      id="filtro"
-                      aria-label="Default select example"
-                    >
-                      <option selected hidden value="0">Género</option>
-                      <option value="1" id="hombre">Hombre</option>
-                      <option value="2" id="mujer">Mujer</option>
-                    </select>
-                  </li>
-                  <li class="nav-item dropdown ms-5">
-                    <select
-                      class="form-select departamento"
-                      id="filtro-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected hidden value="0">Departamento</option>
-                      <option value="Ventas" id="1">Ventas</option>
-                      <option value="RRHH" id="2">RRHH</option>
-                      <option value="Desarrollo" id="3">Desarrollo</option>
-                    </select>
-                  </li>
-                  <li class="nav-item dropdown ms-5">
-                    <button
-                      type="submit"
-                      class="btn btn-secondary btn-submit"
-                      id="btn-vip"
-                    >
-                      VIP
-                    </button>
-                  </li>
-                  <li class="nav-item dropdown ms-5">
-                    <button
-                      type="submit"
-                      class="btn btn-secondary btn-submit"
-                      id="btn-no-vip"
-                    >
-                      NO VIP
-                    </button>
-                  </li>
-                </ul>
-                <div class="inputContainer">
-                  <input
-                    required="required"
-                    id="buscador"
-                    placeholder="Buscar producto"
-                    type="text"
-                  />
-                  <label class="usernameLabel" for="buscador"
-                    >Nombre del producto</label
+                <!-- Buscador -->
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="./index.html"
                   >
-                  <svg viewBox="0 0 448 512" class="userIcon">
-                    <path
-                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-                    ></path>
-                  </svg>
-                </div>
+                    <i class="fas fa-house fa-lg"></i>
+                  </a>
+                </li>
+              </ul>
+              <button type="button" class="btn btn-secondary btn-filtros">
+                Aplicar filtros
+              </button>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">
+                  Precio más bajo
+                </button>
+                <button type="button" class="btn btn-secondary">
+                  Precio más alto
+                </button>
+              </div>
+              <div class="inputContainer">
+                <input
+                  required="required"
+                  id="buscador"
+                  placeholder="Buscar producto"
+                  type="text"
+                />
+                <label class="usernameLabel" for="buscador"
+                  >Nombre del producto</label
+                >
+                <svg viewBox="0 0 448 512" class="userIcon">
+                  <path
+                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                  ></path>
+                </svg>
               </div>
             </div>
-          </nav>
-
+          </div>
+        </nav>
+        <!-- Productos-->
+        <div class="col-8" id="productos">
           <!-- Aquí se mostrarán el numero de resultados -->
-          <div id="mensaje-container" class="mb-3 mt-2"></div>
+          <h5 id="mensaje-container" class="mb-3 mt-3"></h5>
 
           <div
             class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
@@ -143,8 +111,9 @@
         </div>
 
         <!-- Carrito-->
-        <div class="col col-carrito mt-5 h-100 overflow-auto">
+        <div class="col col-carrito mt-1 h-100 overflow-auto">
           <h2>Carrito</h2>
+
           <table class="table table-bordered">
             <thead>
               <tr>
