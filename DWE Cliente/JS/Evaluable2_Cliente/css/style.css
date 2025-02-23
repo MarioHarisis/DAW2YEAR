@@ -25,9 +25,11 @@ nav{
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23FFFFFF' viewBox='0 0 30 30'><path stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-.collapse.show .nav-item {
-  margin-top: 1rem;
+/* Ocultar la casita cuando el menú hamburguesa está abierto */
+.navbar-collapse.show + .navbar-brand {
+  display: none;
 }
+
 
 /* Buscador */
 .inputContainer {

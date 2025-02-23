@@ -20,15 +20,6 @@ async function consultaProductos() {
   let respuestaJson = await respuesta.json();
 
   respuestaJson.products.forEach((element) => {
-    // crear lista de categorias sin repetidos
-    if (!listaCategoria.includes(element.category)) {
-      listaCategoria.push(element.category);
-    }
-
-    // crear lista de marcas sin repetidos
-    if (!listaMarca.includes(element.brand)) {
-      listaMarca.push(element.brand);
-    }
     // se crean los productos con sus atributos
     const producto = new Producto(
       element.id,
@@ -42,6 +33,16 @@ async function consultaProductos() {
       element.stock
     );
 
+    // crear lista de categorias sin repetidos
+    if (!listaCategoria.includes(producto.categoria)) {
+      listaCategoria.push(producto.categoria);
+    }
+
+    // crear lista de marcas sin repetidos
+    if (!listaMarca.includes(producto.marca)) {
+      listaMarca.push(producto.marca);
+    }
+
     productos.push(producto);
   });
   mostrarProductos(productos);
@@ -49,6 +50,7 @@ async function consultaProductos() {
   crearFiltros(listaMarca, "Marca");
 }
 
+// dibujar cartas en dom con lista de prod
 function mostrarProductos(lista) {
   cardContainer.innerHTML = "";
   lista.forEach((producto) => {
@@ -381,43 +383,50 @@ function crearFiltros(lista, tipo) {
 
 // listener select categorias y marcas
 let categoriaSeleccionada = 0;
+let marcaSeleccionada = 0;
 const selectCategoria = document.querySelector("#Categoria");
-selectCategoria.addEventListener("click", (e) => {
-  categoriaSeleccionada = e.target.value;
-  console.log(categoriaSeleccionada);
+selectCategoria.addEventListener("change", (e) => {
+  // cambiar las marcas que aparecen dependiendo de la categoría seleccionada
+  const selectMarca = document.querySelector("#Marca");
+  selectMarca.innerHTML = "";
 
-  // comprobar que no se seleccionan todas la scategorias
+  // Agregar opción por defecto y seleccionarla
+  const opcionPorDefecto = createOption(0, "Todas las marcas");
+  selectMarca.appendChild(opcionPorDefecto);
+  opcionPorDefecto.selected = true;
+  marcaSeleccionada = 0;
+
+  categoriaSeleccionada = e.target.value;
+
+  // comprobar que no se seleccionan todas las categorias
   if (categoriaSeleccionada != 0) {
     let prodEnCategoria = productos.filter(
       (prod) => prod.categoria == categoriaSeleccionada // crear lista con productos que tengan esta categoria
     );
 
-    // cambiar las marcas que aparecen dependiendo de la categoría seleccionada
-    const selectMarca = document.querySelector("#Marca");
-    selectMarca.innerHTML = ``;
+    // Usar un Set para almacenar marcas únicas
+    let marcasUnicas = new Set(prodEnCategoria.map((prod) => prod.marca));
 
-    // Agregar opción por defecto
-    selectMarca.appendChild(createOption(0, "Todas las marcas"));
-
-    prodEnCategoria.forEach((prod) => {
-      console.log(prod);
+    marcasUnicas.forEach((marca) => {
       // crear opción para cada marca y agregarlo al select
-      selectMarca.appendChild(createOption(prod.marca, prod.marca));
+      selectMarca.appendChild(createOption(marca, marca));
     });
   }
 });
 
 // listener marcas
-let marcaSeleccionada = 0;
 const selectMarca = document.querySelector("#Marca");
-selectMarca.addEventListener("click", (e) => {
+selectMarca.addEventListener("change", (e) => {
   marcaSeleccionada = e.target.value; // ver la marca que se ha seleccionado
+  console.log("MARCASELECCIONADA");
+
   console.log(marcaSeleccionada);
 });
 
 // crear opcion para select
 function createOption(value, textContent) {
   const option = document.createElement("option");
+  option.id = value;
   option.value = value;
   option.textContent = textContent;
   return option;
@@ -425,6 +434,8 @@ function createOption(value, textContent) {
 
 // listener botón filtros
 document.querySelector(".btn-filtros").addEventListener("click", () => {
+  console.log("BTN FILTROS");
+
   console.log(categoriaSeleccionada);
   console.log(marcaSeleccionada);
 
