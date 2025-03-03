@@ -1,0 +1,58 @@
+<div class="mb-3">
+  <label class="form-label">Nombre de usuario</label>
+  <input
+    type="text"
+    class="form-control"
+    id="nombreUsuario"
+    name="correo"
+    [(ngModel)]="nombreUsuario"
+  />
+</div>
+<div class="mb-3">
+  <!-- **Ejercicio 1: Formulario de usuario**
+Crea un formulario con `ngModel` para capturar el nombre y edad de un usuario, y mostrarlo en tiempo real en la vista. -->
+  <label class="form-label">Edad</label>
+  <input
+    type="number"
+    class="form-control"
+    id="edadUsuario"
+    min="18"
+    max="99"
+    [(ngModel)]="edadUsuario"
+  />
+</div>
+<div class="mb-3 form-check">
+  <!-- **Ejercicio 2: Checkbox dinámico**
+Crea un checkbox vinculado con `ngModel` que controle si un mensaje debe mostrarse o no en pantalla. -->
+  <input
+    type="checkbox"
+    class="form-check-input"
+    id="mostrarMensaje"
+    [(ngModel)]="mostrarMensaje"
+  />
+  <label class="form-check-label" for="exampleCheck1">Mostrar mensaje</label>
+</div>
+<!-- **Ejercicio 3: Selector de opciones**
+Crea un `select` con varias opciones y usa `ngModel` para mostrar la opción seleccionada en tiempo real -->
+<select class="form-select" [(ngModel)]="mostrarSelect">
+  <option selected hidden>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+
+<!-- Vista tiempo real -->
+<div class="container mt-4">
+  <h3>Vista en tiempo real</h3>
+  <ul class="list-group">
+    <li class="list-group-item">{{ nombreUsuario }}</li>
+    <li class="list-group-item">{{ edadUsuario }}</li>
+  </ul>
+</div>
+
+<div class="container mt-4" *ngIf="mostrarMensaje == true">
+  <h5 class="text-success">Mensaje en tiempo real</h5>
+</div>
+<div class="container mt-4">
+  <h5 class="text-success">Opción seleccionada: {{ mostrarSelect }}</h5>
+</div>
