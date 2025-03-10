@@ -1,0 +1,78 @@
+<h1 class="text-center my-2">Directiva estructuras switch</h1>
+<div class="container">
+  <!-- **Ejercicio 1: Mostrar un mensaje según el estado del pedido** Crea una
+        variable `estadoPedido` en el componente (`pendiente`, `enviado`, `entregado`)
+        y usa `*ngSwitch` para mostrar un mensaje dependiendo del estado. -->
+  <div class="row my-2">
+    <h2 class="text-primary">Estado de pedido:</h2>
+    <select class="form-select" [(ngModel)]="estadoPedido">
+      <option value="1">Pendiente</option>
+      <option value="2">Enviado</option>
+      <option value="3">Entregado</option>
+    </select>
+    <div [ngSwitch]="estadoPedido">
+      <h5 class="text-danger" *ngSwitchCase="'1'">Pendiente</h5>
+      <h5 class="text-warning" *ngSwitchCase="'2'">Enviado</h5>
+      <h5 class="text-success" *ngSwitchCase="'3'">Entregado</h5>
+      <h5 *ngSwitchDefault>Selecciona estado de pedido</h5>
+    </div>
+  </div>
+
+  <!-- ### **Ejercicio 2: Selección de idioma** Crea un `select` para elegir un
+  idioma (`español`, `inglés`, `francés`). Muestra un saludo diferente
+  dependiendo de la selección utilizando `*ngSwitch`. -->
+  <div class="row my-2">
+    <h2 class="text-primary">Idioma:</h2>
+    <select class="form-select" [(ngModel)]="idioma">
+      <option value="1">Español</option>
+      <option value="2">Inglés</option>
+      <option value="3">Francés</option>
+    </select>
+
+    <div class="mt-2" [ngSwitch]="idioma">
+      <h5 *ngSwitchCase="'1'">¡Hola!</h5>
+      <h5 *ngSwitchCase="'2'">Hello!</h5>
+      <h5 *ngSwitchCase="'3'">Bonjour</h5>
+      <h5 *ngSwitchDefault>Selecciona idioma</h5>
+    </div>
+  </div>
+
+  <!-- ### **Ejercicio 3: Icono dinámico** Crea una variable `tipoArchivo` (`pdf`,
+  `doc`, `img`). Usa `*ngSwitch` para mostrar un icono diferente según el tipo
+  de archivo seleccionado desde un select. Puedes utilizar variables para
+  guardar la ruta del icono -->
+
+  <div class="row my-2">
+    <h2 class="text-primary">Tipo de archivo:</h2>
+    <select class="form-select" [(ngModel)]="tipoArchivo">
+      <option value="1">PDF</option>
+      <option value="2">DOC</option>
+      <option value="3">IMG</option>
+    </select>
+
+    <div class="mt-2" [ngSwitch]="tipoArchivo">
+      <img
+        src="https://media.istockphoto.com/id/1298834280/vector/pdf-icon-major-file-format-vector-icon-illustration.jpg?s=612x612&w=0&k=20&c=uA4lg3z8Od32TGuT6zOhMkEVJqH2kCE-_OI8ybalmac="
+        alt="pdf_img"
+        width="200"
+        height="200"
+        *ngSwitchCase="'1'"
+      />
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3396/3396255.png"
+        alt="doc_img"
+        width="200"
+        height="200"
+        *ngSwitchCase="'2'"
+      />
+      <img
+        *ngSwitchCase="'3'"
+        src="https://cdn-icons-png.flaticon.com/512/1375/1375106.png"
+        alt="img_img"
+        width="200"
+        height="200"
+      />
+      <h5 *ngSwitchDefault>Selecciona tipo de archivo</h5>
+    </div>
+  </div>
+</div>

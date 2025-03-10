@@ -1,0 +1,16 @@
+<h2 class="text-center text-secondary">Selección de ejercicios</h2>
+<div>
+  <select [(ngModel)]="seleccion" name="seleccion" class="form-select">
+    <option selected hidden>Selecciona grupo de ejercicios</option>
+    <option value="1">Formulario</option>
+    <option value="2">Directiva Switch</option>
+    <option value="3">Directiva For</option>
+  </select>
+
+  <div class="mt-3" [ngSwitch]="seleccion">
+    <app-form *ngSwitchCase="'1'"></app-form>
+    <app-directiva-switch *ngSwitchCase="'2'"></app-directiva-switch>
+    <app-directiva-for *ngSwitchCase="'3'"></app-directiva-for>
+    <h3 *ngSwitchDefault>Aún no se seleccionó grupo</h3>
+  </div>
+</div>

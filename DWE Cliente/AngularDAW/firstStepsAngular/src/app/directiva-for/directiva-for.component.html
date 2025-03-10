@@ -1,0 +1,93 @@
+<!-- ### **Ejercicio 1: Listado de productos** Define un array de productos en el
+componente y muestra la lista en la vista usando `*ngFor` mediante cartas, donde
+se mostrarán todas las características del elemento. Para ello, es necesario que
+te definas un modelo de ingrediente, donde tiene como caracteristicas nombre,
+precio y tipo. -->
+<h2 class="text-center mt-2">Directiva estructuras for</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="text-primary">Crear producto</h2>
+    <form class="my-2">
+      <input
+        class="form-control"
+        type="text"
+        name="nombre"
+        placeholder="Nombre"
+        [(ngModel)]="nombreProducto"
+      />
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Precio"
+        [(ngModel)]="precioProducto"
+        name="precio"
+      />
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Tipo"
+        [(ngModel)]="tipoProducto"
+        name="tipo"
+      />
+      <button class="btn btn-primary" type="submit" (click)="crearProducto()">
+        Crear producto
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="listaProductos.length > 0" class="contenedor-productos">
+    <div
+      *ngFor="let producto of listaProductos"
+      class="card"
+      style="width: 16rem"
+    >
+      <img
+        src="https://i.pinimg.com/564x/a3/6b/42/a36b422bb2bebcbd77bba846b83ddf5d.jpg"
+        class="card-img-top"
+        alt="card_img"
+      />
+      <div class="card-body">
+        <p class="card-text">Nombre: {{ producto.nombre }}</p>
+        <p class="card-text">Precio: {{ producto.precio }}</p>
+        <p class="card-text">Tipo: {{ producto.tipo }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- ### **Ejercicio 2: Numerar una lista** Crea una lista de nombres y muéstralos
+  con un número al lado usando `index` de `*ngFor` en una ul. Intenta poner un
+  elemento diferente en aquellos elementos que estén ubicados en posiciones
+  pares -->
+  <div class="row mt-3">
+    <h2 class="text-primary">Lista de nombres</h2>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let nombre of listaNombres; let i = index"
+      >
+        {{ i }}: {{ nombre }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- ### **Ejercicio 3: Lista con botón de eliminar** Muestra una lista de tareas
+  usando `*ngFor`. Agrega un botón para eliminar cada elemento de la lista,
+  donde al pulsarlo desaparecerá de la lista -->
+  <div class="row mt-3">
+    <h2 class="text-primary">Lista de nombres</h2>
+    <ul class="list-group">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let tarea of listaTareas"
+      >
+        {{ tarea }}
+        <button
+          class="btn btn-danger"
+          type="button"
+          (click)="eliminarTarea(tarea)"
+        >
+          Eliminar tarea
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

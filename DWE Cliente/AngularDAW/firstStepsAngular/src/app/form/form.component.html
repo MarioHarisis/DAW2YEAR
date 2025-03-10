@@ -1,3 +1,22 @@
+<h2 class="text-center my-2">Formulario</h2>
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    name="mostrarMensaje"
+    (click)="mostrarBienvenida = !mostrarBienvenida"
+  >
+    <!-- alternar entre true y false -->
+    Bienvenida
+  </button>
+</div>
+<div class="mt-2" *ngIf="mostrarBienvenida">
+  <!-- ejecutar solo si es true -->
+  <div>
+    <h2 class="text-primary">Bienvenido a la página</h2>
+  </div>
+</div>
+
 <div class="mb-3">
   <label class="form-label">Nombre de usuario</label>
   <input
@@ -34,8 +53,8 @@ Crea un checkbox vinculado con `ngModel` que controle si un mensaje debe mostrar
 </div>
 <!-- **Ejercicio 3: Selector de opciones**
 Crea un `select` con varias opciones y usa `ngModel` para mostrar la opción seleccionada en tiempo real -->
-<select class="form-select" [(ngModel)]="mostrarSelect">
-  <option selected hidden>Open this select menu</option>
+<select class="form-select" [(ngModel)]="mostrarSelect" name="mostrarSelect">
+  <option value="" disabled hidden>Selecciona opcion</option>
   <option value="1">One</option>
   <option value="2">Two</option>
   <option value="3">Three</option>
@@ -50,9 +69,89 @@ Crea un `select` con varias opciones y usa `ngModel` para mostrar la opción sel
   </ul>
 </div>
 
-<div class="container mt-4" *ngIf="mostrarMensaje == true">
-  <h5 class="text-success">Mensaje en tiempo real</h5>
-</div>
 <div class="container mt-4">
   <h5 class="text-success">Opción seleccionada: {{ mostrarSelect }}</h5>
 </div>
+<div class="container mt-4" *ngIf="mostrarMensaje">
+  <h5 class="text-success">Mensaje en tiempo real</h5>
+</div>
+
+<!-- Formulario -->
+<h3 class="mt-4">Formulario de usuario</h3>
+<form>
+  <!-- 
+  Ejercicio 2: Validación de edad:
+  Crea un formulario con un campo para ingresar la edad. Si la edad es menor de 18, muestra un mensaje con `*ngIf` 
+  indicando que el acceso está restringido. Una vez realizado el ejercicio, modificalo para que se muestre un mensaje 
+  tambi´en en el caso de que la edad sea mayor o igual a 18 -->
+  <div class="mb-3">
+    <label class="form-label">Nombre de usuario</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nombreUsuarioForm"
+      name="nombreUsuarioForm"
+      [(ngModel)]="nombreUsuarioForm"
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Edad</label>
+    <input
+      type="number"
+      class="form-control"
+      id="edadUsuarioForm"
+      name="edadUsuarioForm"
+      min="1"
+      max="99"
+      [(ngModel)]="edadUsuarioForm"
+    />
+  </div>
+  <div>
+    <!-- 
+    **Ejercicio 3: Mostrar mensaje según rol**
+  Define una variable `rol` en el componente. Muestra un mensaje diferente dependiendo de si el usuario es `"admin"`,
+   `"editor"` o `"invitado"` usando `*ngIf`. -->
+    <select class="form-select" [(ngModel)]="selectForm" name="selectForm">
+      <option value="" disabled hidden>Selecciona un rol</option>
+      <option value="admin">Admin</option>
+      <option value="editor">Editor</option>
+      <option value="invitado">Invitado</option>
+    </select>
+
+    <button
+      type="button"
+      class="btn btn-secondary mt-2"
+      (click)="comprobarForm()"
+    >
+      Enviar
+    </button>
+  </div>
+
+  <!-- Mostrar mensaje +18 -->
+  <div class="mt-3" *ngIf="isFormSubmitted">
+    <ng-container *ngIf="mayorEdad; else elseTemplate">
+      <div>
+        <div class="alert alert-success" role="alert">
+          Acceso a contenido +18
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div>
+        <div class="alert alert-danger" role="alert">
+          Contenido restringido +18
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Mostrar mensaje de rol -->
+    <div
+      class="alert alert-primary"
+      *ngIf="selectForm != ''"
+      role="alert"
+      name="selectedRol"
+    >
+      Rol de {{ selectForm }} seleccionado
+    </div>
+  </div>
+</form>
