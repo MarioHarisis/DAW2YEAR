@@ -1,3 +1,5 @@
+<!-- 
+ FIRST LESSON
 <div class="container">
   <h1>App Angular</h1>
   <p>Primera app de Angular por {{ autor }}</p>
@@ -19,4 +21,49 @@
     <app-tecnologias *ngSwitchCase="'3'"></app-tecnologias>
     <p *ngSwitchDefault>Por favor selecciona una opcion</p>
   </div>
+</div>
+ -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- 
+          Para navegar desde el html:
+          ponemos routerLink= "nombre del path al que queramos ir" 
+          la barra especifica que es una ruta padre para que no la confunda con una ruta hija
+          Ejemplos: 
+          <a class="nav-link" routerLink="/tecnologias">Tecnologias</a>
+
+          mandamos 5 como parametro con la ruta
+          debe estar esperando una ruta con parámetros en routing.module
+          <a class="nav-link" [routerLink]=['/tecnologias', 5]>Tecnologias</a>
+          -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/asignaturas">Asignaturas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tecnologias">Tecnologias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navegar()">Listado</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
