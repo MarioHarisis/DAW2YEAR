@@ -1,6 +1,22 @@
 <div class="container">
   <h1>App Angular</h1>
   <p>Primera app de Angular por {{ autor }}</p>
+  <p>Selecciona que componente quieres ver</p>
 
-  <app-listado></app-listado>
+  <select
+    class="form-select"
+    [(ngModel)]="seleccion"
+    placeholder="selecciona componente"
+  >
+    <option value="1">Conocimientos</option>
+    <option value="2">Asignaturas</option>
+    <option value="3">Tecnologias</option>
+  </select>
+
+  <div [ngSwitch]="seleccion">
+    <app-listado *ngSwitchCase="'1'"></app-listado>
+    <app-asignaturas *ngSwitchCase="'2'"></app-asignaturas>
+    <app-tecnologias *ngSwitchCase="'3'"></app-tecnologias>
+    <p *ngSwitchDefault>Por favor selecciona una opcion</p>
+  </div>
 </div>
