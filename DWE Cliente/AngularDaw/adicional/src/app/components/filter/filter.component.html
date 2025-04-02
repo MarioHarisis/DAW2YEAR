@@ -1,0 +1,21 @@
+<!-- pasar filtro seleccionado -->
+<select class="form-select" [(ngModel)]="seleccionTag">
+  <option>life</option>
+  <option>history</option>
+  <option>american</option>
+  <option>crime</option>
+  <option>fiction</option>
+  <option>french</option>
+  <option>love</option>
+</select>
+<button class="btn btn-primary" (click)="realizarFiltro()">Filtrar</button>
+
+<div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+  <div class="col" *ngFor="let item of posts">
+    <!-- 
+    - pasar el item(post) como param a app-post(card)
+    - app-post contiene la estructura de la carta a mostrar
+    -->
+    <app-post [post]="item"></app-post>
+  </div>
+</div>
