@@ -1,0 +1,30 @@
+body {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-light:hover,
+.btn-secondary:hover{
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+.navbar {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+a {
+    color: white !important;
+    text-align: center;
+}
+
+
+.card.rounded-3.pass,
+.card.rounded-3.crear-cuenta {
+    background: white;
+    box-shadow: 8px 8px 8px black;
+
+}

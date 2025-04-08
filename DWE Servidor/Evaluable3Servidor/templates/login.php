@@ -65,12 +65,10 @@ session_start();
                     <p>Accede a tu cuenta</p>
                     <div data-mdb-input-init class="form-outline mb-4">
                       <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        class="form-control"
-                        placeholder="Correo electrónico" />
-                      <label class="form-label" for="correo">Username</label>
+                        type="text"
+                        name="name"
+                        class="form-control" />
+                      <label class="form-label" for="name">Username</label>
                     </div>
 
                     <div data-mdb-input-init class="form-outline mb-4">
@@ -87,10 +85,10 @@ session_start();
                         data-mdb-button-init
                         data-mdb-ripple-init
                         class="btn btn-secondary"
-                        type="submit">
+                        type="submit"
+                        name="submit">
                         Log in
                       </button>
-                      <a class="text-muted" href="cambio_pass.php">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <div
@@ -106,8 +104,85 @@ session_start();
                       </button>
                     </div>
                   </form>
-
                 </div>
+                <?php
+
+                // llamar al archivo txt
+                $file_name = __DIR__ . '/users.txt';
+                $valid_user = false;
+
+                // debe existir un button type= submit y con name=submit
+                if (isset($_POST['submit'])) {
+
+                  // obtener name y password del formulario
+                  $input_name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
+                  $input_password = htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
+
+
+                  // comprobar que los campos no están vacíos
+                  if (empty(trim($input_name)) || empty(trim($input_password))) {
+                    echo '
+                    <div class="container">
+                      <div class="alert alert-danger text-center" role="alert">
+                        Nombre o contraseña vacío
+                      </div>
+                    </div>';
+                  } else {
+
+                    // comprobar que el archivo existe
+                    if (file_exists($file_name)) {
+
+                      // asignar archivo abierto
+                      $file = fopen($file_name, "r");
+
+                      // fgets($file) lee una línea del archivo y la devuelve como una cadena de texto.
+                      // fgets() devuelve false cuando llega al final del archivo (EOF, "End Of File").
+                      while (($linea = fgets($file)) !== false) {
+                        $data = explode(":", trim($linea)); // explode devuelve $data = ["usuario", "1234"];
+
+                        // comprobar que existen ambos campos es decir que $data es >= 2
+                        if (count($data) >= 2) {
+                          // htmlspecialchars para protegernos de inyecciones maliciosas
+                          $name = htmlspecialchars(trim($data[0]));
+                          $password = htmlspecialchars(trim($data[1]));
+
+                          // nombre y contraseña coninciden con los del txt
+                          if ($name === $input_name && $password === $input_password) {
+                            $valid_user = true;
+                            echo '
+                    <div class="container">
+                      <div class="alert alert-primary text-center" role="alert">
+                        User válido
+                      </div>
+                    </div>';
+                            break;
+                          }
+                        }
+                      }
+                      // cerrar archivo
+                      fclose($file);
+
+                      if ($valid_user) {
+                        // asignar el nombre de usuario a la sesión
+                        $_SESSION['user'] = $input_name;
+
+                        //redireccionar al home
+                        echo '<script type="text/javascript">
+                                window.location.href = "home.php";
+                              </script>';
+                        exit();
+                      } else { // usuario o conraseña incorrectos
+                        echo '
+                        <div class="container">
+                          <div class="alert alert-danger text-center" role="alert">
+                            Nombre o contraseña incorrecto
+                          </div>
+                        </div>';
+                      }
+                    }
+                  }
+                }
+                ?>
               </div>
               <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div class="w-100 h-100">
@@ -127,28 +202,3 @@ session_start();
 </body>
 
 </html>
-<?php
-
-require_once "../users.txt";
-
-$file_name = "users.txt";
-
-if (isset($_POST['submit'])) {
-
-
-  if (file_exists($file_name)) {
-
-    $file = fopen($file_name, "r");
-    $users = [];
-
-    while (($linea = fgets($file)) !== false) {
-
-      $data = explode(":", $linea);
-
-      $name = htmlspecialchars($data[0]);
-      $password = htmlspecialchars($data[1]);
-    }
-  }
-}
-
-?>

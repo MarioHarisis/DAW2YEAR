@@ -16,7 +16,7 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="stylesheet" href="../css/crear_cuenta.css" />
   <title>Login</title>
 </head>
 
@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="home.php">
-        <i class="bi bi-house-fill fs-2">HomeSweetHome</i>
+        <i>TecnoEvents</i>
       </a>
       <button
         class="navbar-toggler"
@@ -45,7 +45,7 @@
       </div>
     </div>
   </nav>
-  <section class="h-100 gradient-form" style="background-color: #eee">
+  <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-10">
@@ -54,43 +54,20 @@
               <div class="col-12">
                 <div class="card-body p-md-5 mx-md-4">
                   <div class="text-center">
-                    <h2>HomeSweetHome</h2>
+                    <h2>TecnoEvents</h2>
                     <h4 class="mt-1 mb-5 pb-1">Crear cuenta nueva</h4>
                   </div>
                   <form action="crear_cuenta.php" method="POST">
                     <h5 class="text-center">Introduce tus datos</h5>
-                    <p>¿Eres vendedor o comprador?</p>
-                    <select
-                      class="form-select mb-4"
-                      aria-label="Default select example"
-                      name="tipo_usuario">
-                      <option selected hidden
-                        value="0">
-                        Selecciona una opción
-                      </option>
-                      <option value="1">Vendedor</option>
-                      <option value="2">Comprador</option>
-                    </select>
                     <div data-mdb-input-init class="form-outline mb-4">
                       <input
                         type="text"
-                        id="nombres"
-                        name="nombres"
+                        id="name"
+                        name="name"
                         class="form-control"
                         required />
-                      <label class="form-label" for="nombres">Nombre completo</label>
+                      <label class="form-label" for="name">Username</label>
                     </div>
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        class="form-control"
-                        placeholder="Correo electrónico"
-                        required />
-                      <label class="form-label" for="correo">Username</label>
-                    </div>
-
                     <div data-mdb-input-init class="form-outline mb-4">
                       <input
                         type="password"
@@ -106,11 +83,28 @@
                         type="submit"
                         data-mdb-button-init
                         data-mdb-ripple-init
-                        class="btn btn-outline-light">
+                        class="btn btn-secondary">
                         Crear cuenta
                       </button>
                     </div>
                   </form>
+                  <?php
+
+                  $file_name = __DIR__ . '/users.txt';
+
+                  if (isset($_POST['submit'])) {
+                    $input_name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
+                    $input_password = htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
+
+                    if (file_exists($file_name)) {
+                      $file = fopen($file_name, "a");
+                      while (($linea = fgets($file) !== false)) {
+                        $data = explode(":", trim($linea));
+                      }
+                    }
+                  }
+
+                  ?>
                 </div>
               </div>
             </div>
