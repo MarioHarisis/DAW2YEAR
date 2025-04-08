@@ -1,0 +1,56 @@
+body {
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.gradient-custom-2 {
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    }
+    
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+    .card.rounded-3.login {
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+.btn-outline-secondary:hover,
+.btn-outline-light:hover,
+.btn-secondary:hover{
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+.navbar {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+a {
+    color: white !important;
+    text-align: center;
+}
+
+
+.card.rounded-3.pass,
+.card.rounded-3.crear-cuenta {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    box-shadow: 8px 8px 8px gray;
+}
+
+textarea {
+    height: 100px;
+}

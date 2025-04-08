@@ -1,0 +1,35 @@
+body {
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    background-color: black;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-light:hover,
+.btn-secondary:hover{
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+.navbar {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+a {
+    color: white !important;
+    text-align: center;
+}
+
+/* carousel */
+.carousel-item img {
+    height: 50vh;
+    object-fit: cover;
+  }
+
+.container{ 
+    border:none;
+    border-radius: 10px;
+    color: white;
+
+}
