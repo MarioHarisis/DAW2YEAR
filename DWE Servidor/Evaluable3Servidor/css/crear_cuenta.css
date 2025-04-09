@@ -1,9 +1,10 @@
 body {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    background-color: #0E0E11;
     font-family: "Comfortaa", serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+
 }
 
 .btn-outline-secondary:hover,
@@ -24,7 +25,7 @@ a {
 
 .card.rounded-3.pass,
 .card.rounded-3.crear-cuenta {
-    background: white;
+    background-color: #18181B;
     box-shadow: 8px 8px 8px black;
 
 }

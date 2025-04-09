@@ -1,0 +1,24 @@
+body {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
+
+a {
+    color: white !important;
+}
+
+.list-group-item:hover {
+    background: linear-gradient(to right, #000000, #4b0e23, #800505) !important;
+    border-color: #800505 !important;
+    color: white !important;
+    border: black;
+  }
+
+.list-container {
+    background: linear-gradient(to right, #000000, #4b0e23, #800505) !important;
+    padding: 15px;
+    border-radius: 15px;
+}

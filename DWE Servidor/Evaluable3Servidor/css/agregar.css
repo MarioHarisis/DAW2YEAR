@@ -1,23 +1,22 @@
 body {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    background-color: #0E0E11;
     color: white;
 }
 
 a {
     color: white !important;
-    text-align: center;
 }
 
-/* carousel */
-.carousel-item img {
-    height: 60vh;
-    object-fit: cover;
-}
-
-.navbar {
+.card{
     background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    min-height: 100%;
+    min-width: 350px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
+    border: black;
+    padding: 15px;
+    color: white;
 }

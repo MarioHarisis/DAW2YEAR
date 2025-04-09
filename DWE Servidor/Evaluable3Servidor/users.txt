@@ -1,2 +1,3 @@
-pepe:12345
-Juan:54321
+Mario:$2y$10$SkpUopge0oWDewEFJMUTF.5dmZxCk6OfhZLX076tx.kJT1Jq3uU0.
+raton:$2y$10$7gsITIDewRTB4vEbFXcKUeLYC.mn68qAcR/7olBxucrAqiu6uhCRK
+iPhone 14:$2y$10$iMZqXXWZmPR0XyArxHNGNu2JclefnDmWidcqe9RSzJZA53q1kKHvW

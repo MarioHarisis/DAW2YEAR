@@ -23,44 +23,39 @@ session_start();
 
 <body>
   <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="home.php">
-        <i class="bi bi-house-fill fs-2">TecnoEvents</i>
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
+    <div class="container-fluid justify-content-between">
+
+      <!-- Botón para vista móvil -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="comprar.php">Comprar</a>
+            <a class="nav-link" href="home.php">
+              <h5>Home</h5>
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="alquilar.php">Alquilar</a>
-          </li>
-          <?php
-          // Verifica si el usuario ha iniciado sesión
-          if (isset($_SESSION['usuario_id'])) { ?>
+          <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
-              <a class="nav-link" href="perfil.php">Perfil</a>
+              <a class="nav-link" href="perfil.php">Gestionar eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="logout.php">Cerrar sesión</a>
+              <a class="nav-link" href="logout.php">Cerrar sesión</a>
             </li>
           <?php } else { ?>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php">Iniciar sesión</a>
+              <a class="nav-link" href="login.php">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+              <p class="nav-link text-secondary">(inicia sesion para gestionar eventos)</p>
             </li>
           <?php } ?>
         </ul>
       </div>
+
     </div>
   </nav>
   <main>
@@ -88,7 +83,7 @@ session_start();
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?q=80&w=1436&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               class="d-block w-100"
               alt="..." />
           </div>
@@ -100,7 +95,7 @@ session_start();
           </div>
           <div class="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?q=80&w=1436&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               class="d-block w-100"
               alt="..." />
           </div>
@@ -123,12 +118,13 @@ session_start();
         </button>
       </div>
     </div>
+    <!-- Images container -->
     <div class="container home-container">
       <hr class="divider my-4" />
       <div class="row mt-2">
         <div class="col-md-7 order-md-2">
           <h2 class="heading">
-            Oh yeah, it's that good. <span class="text-muted">See for yourself.</span>
+            Oh yeah, it's that good. <span class="text-secondary">See for yourself.</span>
           </h2>
           <p class="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in purus id
@@ -150,6 +146,7 @@ session_start();
         </div>
       </div>
       <hr class="divider my-4" />
+
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">

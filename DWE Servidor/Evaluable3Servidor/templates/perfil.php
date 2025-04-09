@@ -19,15 +19,15 @@ session_start();
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../css/perfil.css" />
-    <title>Comprar</title>
+    <link rel="stylesheet" href="../css/perfil.css">
+    <title>Mis propiedades</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class=" navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="home.php">
-                <i class="bi bi-house-fill fs-2">HomeSweetHome</i>
+                <i class="bi fs-2">TecnoEvents</i>
             </a>
             <button
                 class="navbar-toggler"
@@ -41,16 +41,10 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="comprar.php">Comprar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="alquilar.php">Alquilar</a>
-                    </li>
                     <!-- Si la sesion esta iniciada se muestran los campos NO comunes -->
-                    <?php if (isset($_SESSION['usuario_id'])) { ?>
+                    <?php if (isset($_SESSION['user'])) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="perfil.php">Perfil</a>
+                            <a class="nav-link" href="perfil.php">Mis propiedades</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="logout.php">Cerrar sesión</a>
@@ -65,78 +59,22 @@ session_start();
             </div>
         </div>
     </nav>
+    <div class="container list-container mt-5">
+        <h4 class="text-center">Mis propiedades:</h4>
+        <div class="list-group">
+            <?php
 
-    <div class="container mt-5 d-flex justify-content-center">
-        <div class="card card-perfil text-center">
-            <!--  Comprobar que tipo de usuario es -->
-            <?php if ($_SESSION['tipo_usuario'] == 1): ?>
-                <h4>Perfil Vendedor</h4>
-            <?php else: ?>
-                <h4>Perfil Comprador</h4>
-            <?php endif; ?>
-            <img src="https://cdn.pixabay.com/photo/2021/07/02/04/48/user-6380868_1280.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?php
-                                        $correo = $_SESSION['usuario_correo'];
-                                        echo htmlspecialchars($correo);
-                                        ?></h5>
-                <?php if ($_SESSION['tipo_usuario'] == 1): ?>
-                    <p class="card-text">Bienvenid@ a tu perfil, aquí podrás agregar tus propiedades.</p>
-                    <div class="d-flex gap-1 justify-content-center">
-                        <a href="agregar.php"><button class="btn btn-primary">Agregar propiedad</button></a>
-                    </div>
-                <?php else: ?>
-                    <p class="card-text">Bienvenid@ a tu perfil, aquí podrás ver tus propiedades en favoritos.</p>
-                <?php endif; ?>
-            </div>
+            /*             require_once __DIR__ . '/../config/conn.php';
+
+
+            $sql = "INSERT INTO eventos (id, nombre, fecha,  descripcion, lugar, capacidad) 
+                                        VALUES ( '$usuario_id', '$tipo_oferta', '$calle', '$metros', '$imagen', '$precio', '$descripcion')";
+
+            for ($i = 0; $i <= 10; $i++) {
+                echo '<button type="button" class="list-group-item list-group-item-action">A second button item</button>';
+            } */
+            ?>
         </div>
-    </div>
-
-    <div class="container-fluid col-12 mt-5">
-        <h4>Mis propiedades:</h4>
-        <div class="row">
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
-                <?php
-                // realizar la conexion
-                require_once __DIR__ . '/../config/conn.php';
-
-                // if ordenar, cambiar sentencia sql para ordenar por precio por ejemplo
-                $usuario_id = $_SESSION['usuario_id'];
-                $sql = "SELECT * FROM pisos WHERE pisos.usuario_id = '$usuario_id' "; // crear sentencia
-                $result = mysqli_query($connection, $sql); // hacer consulta
-
-                // si deviuelve más de 0 resultados de filas(row), se ejecuta el while
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) { // por cada while se muestra una card de la vivienda
-                        echo '<div class="col">';
-                        echo '<div class="card">';
-                        echo '<img src="' . $row['imagen'] . '" class="card-img-top-vivienda" alt="Imagen de la propiedad">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title">' . $row['titulo'] . '</h5>';
-                        echo '<p class="card-text">' . $row['zona'] . ' ' . $row['metros'] . 'm2' . '</p>';
-                        if ($row['precio_rebajado'] > 0) {
-                            echo '<h5 class="card-text text-danger">' . 'REBAJADO' . '</h5>';
-                            echo '<h5 class="card-text text-danger text-decoration-line-through">' . $row['precio'] . '€' . '</h5>';
-                            echo '<h5 class="card-text text-primary">' . 'Precio: ' . $row['precio_rebajado'] . '€' . '</h5>';
-                        } else {
-                            echo '<h5 class="card-text text-primary">' . 'Precio: ' . $row['precio'] . '€' . '</h5>';
-                        }
-                        echo '<h5 class="card-text">' . ' Descripcion ' . '</h5>';
-                        echo '<p class="card-text">' . $row['descripcion'] . '</p>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    // en caso de que no haya datos de viviendas en la db
-                    echo "<p class='text-center'>No se encontraron propiedades.</p>";
-                }
-
-                mysqli_close($connection);
-                ?>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

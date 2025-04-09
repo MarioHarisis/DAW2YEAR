@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,27 +86,66 @@
                         type="submit"
                         data-mdb-button-init
                         data-mdb-ripple-init
-                        class="btn btn-secondary">
+                        class="btn btn-secondary"
+                        name="submit">
                         Crear cuenta
                       </button>
                     </div>
                   </form>
                   <?php
 
-                  $file_name = __DIR__ . '/users.txt';
+                  $file_name = __DIR__ . '/../users.txt';
+                  $existe_user = false;
 
                   if (isset($_POST['submit'])) {
                     $input_name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
                     $input_password = htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
 
                     if (file_exists($file_name)) {
-                      $file = fopen($file_name, "a");
-                      while (($linea = fgets($file) !== false)) {
+                      $file = fopen($file_name, "a+");
+
+                      while (($linea = fgets($file)) !== false) {
                         $data = explode(":", trim($linea));
+                        $name = htmlspecialchars(trim($data[0]));
+
+                        if ($name === $input_name) {
+                          echo '
+                              <div class="container">
+                                <div class="alert alert-danger text-center" role="alert">
+                                  Este username ya existe
+                                </div>
+                              </div>';
+                          $existe_user = true;
+                        }
                       }
+
+                      if (!$existe_user) {
+                        // hashear contraseña
+                        $hash = password_hash($input_password, PASSWORD_DEFAULT);
+                        if (fwrite($file, $input_name . ":" . $hash . PHP_EOL)) {
+                          $_SESSION['user'] = $input_name;
+                          echo '
+                                <div class="container">
+                                  <div class="alert alert-primary text-center" role="alert">
+                                    Usuario registrado correctamente.
+                                  </div>
+                                </div>';
+                          //redireccionar al home
+                          echo '<script type="text/javascript">
+                                  window.location.href = "home.php";
+                                </script>';
+                        } else {
+                          echo '
+                                <div class="container">
+                                  <div class="alert alert-danger text-center" role="alert">
+                                    Ocurrió algún problema con el archivo.
+                                  </div>
+                                </div>';
+                        }
+                      }
+                      fclose($file);
                     }
                   }
-
                   ?>
                 </div>
               </div>

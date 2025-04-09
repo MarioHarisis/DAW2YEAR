@@ -108,7 +108,7 @@ session_start();
                 <?php
 
                 // llamar al archivo txt
-                $file_name = __DIR__ . '/users.txt';
+                $file_name = __DIR__ . '/../users.txt';
                 $valid_user = false;
 
                 // debe existir un button type= submit y con name=submit
@@ -116,7 +116,7 @@ session_start();
 
                   // obtener name y password del formulario
                   $input_name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
-                  $input_password = htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
+                  $input_password = ($_POST['password']);
 
 
                   // comprobar que los campos no están vacíos
@@ -144,10 +144,10 @@ session_start();
                         if (count($data) >= 2) {
                           // htmlspecialchars para protegernos de inyecciones maliciosas
                           $name = htmlspecialchars(trim($data[0]));
-                          $password = htmlspecialchars(trim($data[1]));
+                          $hash_password = trim($data[1]);
 
                           // nombre y contraseña coninciden con los del txt
-                          if ($name === $input_name && $password === $input_password) {
+                          if ($name === $input_name && password_verify($input_password, $hash_password)) {
                             $valid_user = true;
                             echo '
                     <div class="container">
