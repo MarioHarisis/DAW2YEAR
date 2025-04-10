@@ -12,7 +12,7 @@ a {
 }
 
 .card{
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    background: linear-gradient(to right, #48495c,#0E0E11);
     min-height: 100%;
     min-width: 350px;
     box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
@@ -20,3 +20,12 @@ a {
     padding: 15px;
     color: white;
 }
+
+
+.btn-secondary:hover {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+  }
+
+  .btn-secondary {
+    background: linear-gradient(to right, #48495c,#0E0E11);
+    }

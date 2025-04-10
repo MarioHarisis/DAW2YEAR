@@ -1,5 +1,43 @@
 <?php
 session_start();
+
+require_once __DIR__ . '/../config/conn.php';
+
+// Verificar si existe el parámetro 'id' en la URL (para actualizar un evento)
+if (isset($_GET['id'])) {
+    $eventoId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $_SESSION['eventoId'] = $eventoId;
+
+    if ($eventoId) {
+
+        // buscar el evento con ese id en la DB
+        $stmt = $connection->prepare("SELECT * FROM eventos WHERE id = ? ");
+
+        $stmt->bind_param("i", $eventoId); // asignamos a la ? el valor de $eventoId recogido en la url
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+
+            // si encuentra resultados
+            if ($result->num_rows > 0) {
+                // obtener los resultados
+                $evento = $result->fetch_assoc();
+
+                // rellenar los valores para el formulario
+                $nombre = $evento['nombre'];
+                $fecha = $evento['fecha'];
+                $descripcion = $evento['descripcion'];
+                $lugar = $evento['lugar'];
+                $capacidad = $evento['capacidad'];
+            } else {
+                echo "Evento no encontrado.";
+            }
+        } else {
+            echo "Error al obtener los datos del evento.";
+        }
+        $stmt->close();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,9 +79,9 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
-                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <?php if (isset($_SESSION['user'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="perfil.php">Perfil</a>
+                            <a class="nav-link active" aria-current="page" href="perfil.php">Eventos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="logout.php">Cerrar sesión</a>
@@ -71,94 +109,147 @@ session_start();
                                     </div>
                                     <form action="agregar.php" method="POST">
                                         <h5 class="text-center">Introduce las características del evento</h5>
-                                </div>
-                                <div data-mdb-input-init class="form-outline mb-3">
-                                    <label class="form-label" for="titulo">Título</label>
-                                    <input
-                                        type="text"
-                                        id="titulo"
-                                        name="titulo"
-                                        class="form-control"
-                                        required />
-                                </div>
-                                <div data-mdb-input-init class="form-outline mb-3">
-                                    <label class="form-label" for="fecha">Fecha</label>
-                                    <input
-                                        type="date"
-                                        id="fecha"
-                                        name="fecha"
-                                        class="form-control"
-                                        required />
-                                </div>
-                                <div data-mdb-input-init class="form-outline mb-3">
-                                    <label class="form-label" for="descripcion">Descripción</label>
-                                    <textarea class="form-control" name="descripcion" id="descripcion" required>
-                                            </textarea>
-                                </div>
-                                <div data-mdb-input-init class="form-outline mb-3">
-                                    <label class="form-label" for="lugar">Lugar</label>
-                                    <input
-                                        type="text"
-                                        id="lugar"
-                                        name="lugar"
-                                        class="form-control"
-                                        required />
-                                </div>
-                                <div data-mdb-input-init class="form-outline mb-3">
-                                    <label class="form-label" for="capacidad">Capacidad</label>
-                                    <input
-                                        type="number"
-                                        id="capacidad"
-                                        name="capacidad"
-                                        class="form-control"
-                                        min="1"
-                                        required />
-                                </div>
-                                <div
-                                    class="d-flex align-items-center justify-content-center">
-                                    <button
-                                        type="submit"
-                                        data-mdb-button-init
-                                        data-mdb-ripple-init
-                                        class="btn btn-light">
-                                        Agregar propiedad
-                                    </button>
-                                </div>
-                                </form>
-                                <?php
 
-                                // establecer la conexión a la db
-                                /* require_once __DIR__ . '/../config/conn.php';
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                            <label class="form-label" for="nombre">Nombre del evento</label>
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                name="nombre"
+                                                class="form-control"
+                                                value="<?php echo isset($nombre) ? htmlspecialchars($nombre) : ''; ?>"
+                                                required />
+                                        </div>
 
-                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                    $tipo_oferta = mysqli_real_escape_string($connection, $_POST['tipo_oferta']);
-                                    $calle = mysqli_real_escape_string($connection, $_POST['calle']);
-                                    $metros = intval($_POST['metros']);
-                                    $imagen = mysqli_real_escape_string($connection, $_POST['imagen']);
-                                    $precio = intval($_POST['precio']);
-                                    $descripcion = mysqli_real_escape_string($connection, $_POST['descripcion']);
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                            <label class="form-label" for="fecha">Fecha</label>
+                                            <input
+                                                type="date"
+                                                id="fecha"
+                                                name="fecha"
+                                                class="form-control"
+                                                value="<?php echo isset($fecha) ? htmlspecialchars($fecha) : ''; ?>"
+                                                required />
+                                        </div>
 
-                                    if (!isset($_SESSION['usuario_id'])) {
-                                        die("Error: Debes iniciar sesión para agregar propiedades.");
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                            <label class="form-label" for="descripcion">Descripción</label>
+                                            <textarea class="form-control" name="descripcion" id="descripcion" required><?php echo isset($descripcion) ? htmlspecialchars($descripcion) : ''; ?></textarea>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                            <label class="form-label" for="lugar">Lugar</label>
+                                            <input
+                                                type="text"
+                                                id="lugar"
+                                                name="lugar"
+                                                class="form-control"
+                                                value="<?php echo isset($lugar) ? htmlspecialchars($lugar) : ''; ?>"
+                                                required />
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                            <label class="form-label" for="capacidad">Capacidad</label>
+                                            <input
+                                                type="number"
+                                                id="capacidad"
+                                                name="capacidad"
+                                                class="form-control"
+                                                value="<?php echo isset($capacidad) ? htmlspecialchars($capacidad) : ''; ?>"
+                                                min="1"
+                                                required />
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <button type="submit" name="submit" class="btn btn-secondary">
+                                                <?php echo isset($eventoId) && $eventoId ? 'Actualizar evento' : 'Crear evento'; ?>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <?php
+
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+
+                                        $eventoId = isset($_SESSION['eventoId']) ? $_SESSION['eventoId'] : null;
+
+                                        // Validación de los inputs
+                                        $nombre = trim(filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+                                        $fecha = $_POST['fecha'];
+                                        $descripcion = trim(filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+                                        $lugar = trim(filter_input(INPUT_POST, 'lugar', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+                                        $capacidad = filter_input(INPUT_POST, 'capacidad', FILTER_VALIDATE_INT);
+
+                                        if ($eventoId) {
+                                            // Actualización de evento existente
+                                            $sql = "UPDATE eventos SET nombre = ?, fecha = ?, descripcion = ?, lugar = ?, capacidad = ? WHERE id = ?";
+                                            $stmt = $connection->prepare($sql);
+
+                                            if ($stmt) {
+                                                $stmt->bind_param("ssssii", $nombre, $fecha, $descripcion, $lugar, $capacidad, $eventoId);
+
+                                                if ($stmt->execute()) {
+                                                    echo '
+                                                    <div class="container mt-2">
+                                                    <div class="alert alert-success text-center" role="alert">
+                                                        Evento actualizado correctamente
+                                                    </div>
+                                                    </div>';
+                                                    echo '<script type="text/javascript">
+                                                        window.location.href = "perfil.php";
+                                                        </script>';
+                                                } else {
+                                                    echo '
+                                                    <div class="container mt-2">
+                                                    <div class="alert alert-danger text-center" role="alert">
+                                                        Algo salió mal
+                                                    </div>
+                                                    </div>';
+                                                }
+                                                $stmt->close();
+                                            } else {
+                                                echo '<h5>Error al preparar la consulta.</h5>';
+                                            }
+                                        } else {
+                                            /* Crear un evento nuevo */
+
+                                            // preparar consulta
+                                            $sql = "INSERT INTO eventos (nombre, fecha, descripcion, lugar, capacidad) VALUES (?, ?, ?, ?, ?)";
+                                            $stmt = $connection->prepare($sql);
+
+                                            if ($stmt) {
+                                                // rellenar consulta
+                                                $stmt->bind_param("ssssi", $nombre, $fecha, $descripcion, $lugar, $capacidad);
+
+                                                // ejecutar consulta
+                                                if ($stmt->execute()) {
+                                                    echo '
+                                                    <div class="container mt-2">
+                                                    <div class="alert alert-success text-center" role="alert">
+                                                        Evento creado correctamente
+                                                    </div>
+                                                    </div>';
+                                                } else {
+                                                    echo '
+                                                    <div class="container mt-2">
+                                                    <div class="alert alert-danger text-center" role="alert">
+                                                        Algo salió mal
+                                                    </div>
+                                                    </div>';
+                                                }
+                                                $stmt->close();
+                                            } else {
+                                                echo '<h5>Error al preparar la consulta.';
+                                            }
+                                        }
                                     }
-                                    $usuario_id = $_SESSION['usuario_id'];
-
-                                    $sql = "INSERT INTO pisos (usuario_id, tipo_oferta, calle,  metros, imagen, precio, descripcion) 
-                                        VALUES ( '$usuario_id', '$tipo_oferta', '$calle', '$metros', '$imagen', '$precio', '$descripcion')";
-                                    if (mysqli_query($connection, $sql)) {
-                                        echo '<h5> Propiedad agregada correctamente </h5>';
-                                    } else {
-                                        echo '<h5> Ocurrió un error al intentar agregar la propiedad </h5>';
-                                    }
-                                }
-                                mysqli_close($connection);
-                                 */ ?>
+                                    mysqli_close($connection);
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 </body>

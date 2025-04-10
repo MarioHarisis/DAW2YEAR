@@ -3,16 +3,8 @@ body {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    background-color: #0E0E11;
-}
-.gradient-custom-2 {
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #252423, #2c3d62, #252d74, #3c157b);
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, #000000,#4b0e23, #800505);
-    }
+}
     
     @media (min-width: 768px) {
     .gradient-form {
@@ -36,18 +28,12 @@ body {
     background: linear-gradient(to right, #000000,#4b0e23, #800505);
 }
 
-.navbar {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
-}
-
 a {
     color: white !important;
     text-align: center;
 }
 
-
-.card.rounded-3.pass,
-.card.rounded-3.crear-cuenta {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
-    box-shadow: 8px 8px 8px gray;
+.card {
+    background: linear-gradient(to right, #48495c,#0E0E11);
+    color: white;
 }

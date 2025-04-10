@@ -59,21 +59,81 @@ session_start();
             </div>
         </div>
     </nav>
+    <h2 class="text-center">Administración de los eventos</h2>
     <div class="container list-container mt-5">
-        <h4 class="text-center">Mis propiedades:</h4>
-        <div class="list-group">
-            <?php
+        <a href="agregar.php"><button class="btn btn-secondary">Agregar un evento nuevo</button></a>
+        <div class="list-group mt-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Lugar</th>
+                        <th scope="col">Capacidad</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
 
-            /*             require_once __DIR__ . '/../config/conn.php';
+                    require_once __DIR__ . '/../config/conn.php';
 
+                    $sql = "SELECT * FROM eventos";
+                    $result = mysqli_query($connection, $sql);
 
-            $sql = "INSERT INTO eventos (id, nombre, fecha,  descripcion, lugar, capacidad) 
-                                        VALUES ( '$usuario_id', '$tipo_oferta', '$calle', '$metros', '$imagen', '$precio', '$descripcion')";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<tr>';
+                        echo '<th scope="row">' . $row['id'] . '</th>';
+                        echo "<td>" . $row['nombre'] . "</td>";
+                        echo "<td>" . $row['fecha'] . "</td>";
+                        echo "<td>" . $row['descripcion'] . "</td>";
+                        echo "<td>" . $row['lugar'] . "</td>";
+                        echo "<td>" . $row['capacidad'] . "</td>";
+                        // Dentro del bucle que genera las filas de la tabla:
+                        echo "
+                        <td>
+                            <a href='agregar.php?id=" . $row['id'] . "' class='btn btn-warning'>Editar</a>
+                        </td>";
 
-            for ($i = 0; $i <= 10; $i++) {
-                echo '<button type="button" class="list-group-item list-group-item-action">A second button item</button>';
-            } */
-            ?>
+                        // Aquí agregamos un form para poder eliminar
+                        echo "<td>
+                                <form method='POST' style='display:inline;'>
+                                    <input type='hidden' name='eliminar_id' value='" . $row['id'] . "'>
+                                    <button type='submit' name='btn_eliminar' class='btn btn-danger'>Eliminar</button>
+                                </form>
+                            </td>";
+
+                        echo '</tr>';
+                    }
+
+                    // funcionalidad del botón eliminar
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_eliminar'])) {
+                        $eventoId = filter_input(INPUT_POST, 'eliminar_id', FILTER_VALIDATE_INT);
+
+                        if ($eventoId) {
+                            $stmt = $connection->prepare("DELETE FROM eventos WHERE id = ?");
+                            $stmt->bind_param("i", $eventoId);
+
+                            if ($stmt->execute()) {
+                                //recargo la página haciendo un redireccionamiento, para que se reflejen los cambios
+                                echo '<script type="text/javascript">
+                                        window.location.href = "perfil.php";
+                                    </script>';
+                            } else {
+                                echo "<p class='text-danger'>Error al eliminar el evento.</p>";
+                            }
+                            $stmt->close();
+                        } else {
+                            echo "<p class='text-warning'>ID no válido.</p>";
+                        }
+                    }
+                    mysqli_close($connection);
+                    ?>
+                </tbody>
+            </table>
         </div>
 </body>
 

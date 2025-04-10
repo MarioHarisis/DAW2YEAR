@@ -4,21 +4,47 @@ body {
     font-weight: 300;
     font-style: normal;
     color: white;
+    background-color: #0E0E11;
 }
-
+/*links*/
 a {
     color: white !important;
 }
+/*fondo de la lista*/
+.list-container {
+    background-color: #373843;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*cada fila de la lista*/
+.list-group-item {
+    background-color: #373843;
+    border: black;
+    color: #8c8ea4;
+}
 
 .list-group-item:hover {
-    background: linear-gradient(to right, #000000, #4b0e23, #800505) !important;
+    
+    background: linear-gradient(to right, #48495c,#0E0E11);
     border-color: #800505 !important;
     color: white !important;
     border: black;
   }
 
-.list-container {
-    background: linear-gradient(to right, #000000, #4b0e23, #800505) !important;
-    padding: 15px;
-    border-radius: 15px;
+.btn-secondary:hover {
+    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+}
+
+.btn-secondary {
+    background: linear-gradient(to right, #48495c,#0E0E11);
+}
+
+/* fondo de la tabla*/
+.table.table-bordered,
+.table.table-bordered td,
+.table.table-bordered th {
+    background-color: #373843;
+    color: white;
 }
