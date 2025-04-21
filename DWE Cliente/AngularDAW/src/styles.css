@@ -1,0 +1,36 @@
+body {
+    background-color: #403d39 !important;
+}
+
+.btn.btn-primary {
+    background-color: #EB5E28;
+    border: none;
+  }
+
+.btn.btn-primary:hover {
+    background-color: #FFFCF2;
+    color: #EB5E28;
+  }
+
+  .btn-outline-light{
+    color: #EB5E28;;
+  }
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #252422 !important;
+    color: #FFFCF2 !important;
+
+  }
+.card-title {
+   color: #CCC5B9 !important;
+  }
+  
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
+  .navbar {
+    background-color: #252422 !important;
+  }
