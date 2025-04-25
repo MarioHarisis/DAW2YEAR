@@ -1,0 +1,22 @@
+
+.navbar {
+    background-color: #252422 !important;
+  }
+
+.nav-link {
+    color: #CCC5B9 !important;
+  }
+
+
+/* Definimos la imagen y su transición */
+img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tiempo de transición */
+}
+
+/* Efecto cuando el ratón pasa sobre la imagen */
+img:hover {
+  transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra alrededor */
+  cursor: pointer;
+
+}
