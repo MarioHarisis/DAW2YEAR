@@ -1,0 +1,38 @@
+.list-group-item {
+    background-color: #252422 !important;
+    color: #CCC5B9 !important;
+}
+.navbar {
+    background-color: #252422 !important;
+  }
+
+.nav-link {
+    color: #CCC5B9 !important;
+  }
+  .detail-image-wrapper {
+    position: relative;
+  }
+  
+  .overlay-info {
+    position: absolute;
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    right: 10px; /* Alinea el texto a la derecha */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 300px; /* Limita el ancho del texto */
+  }
+  
+  .overlay-info h2 {
+    font-size: 18px; /* Tamaño de fuente para el título */
+  }
+  
+  .overlay-info p {
+    font-size: 14px; /* Tamaño de fuente para la descripción y el nombre */
+  }
+  
+  .overlay-info .row {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  

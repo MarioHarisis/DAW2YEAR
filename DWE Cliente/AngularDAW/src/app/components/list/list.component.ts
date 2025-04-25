@@ -9,25 +9,46 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './list.component.css'
 })
 export class ListComponent implements OnInit{
-  cars?: any [];
+  images: any[] = [];
   category: string = '';
-
-constructor(private apiService : ApiService, private route: ActivatedRoute){}
-
-ngOnInit(): void {
-  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  //Add 'implements OnInit' to the class.
-  this.route.queryParams.subscribe(params => {
-    this.category = params['category'] || 'cars';
-    this.loadCars();
-  });
+  search: string = '';
+  mode: 'category' | 'search' = 'category';
   
-}
+  constructor(private apiService : ApiService, private route: ActivatedRoute){}
+  
+  // carga las imágenes según arranca la vista
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.route.queryParams.subscribe(params => {
+      this.category = params['category'] || 'Naturaleza';
+      this.mode = 'category';
+      this.loadCars();
+    });
+  }
+  
+  // resultados de la busqueda por categoria
+  loadCars():void {
+    this.images = [];
+    this.apiService.getCarsByCategory(this.category).subscribe(response => {
+      this.images = response.results;
+      // compartir la lista filtrada con el servicio
+      this.apiService.setFilteredList(this.images);
+    })
+  }
+  
+  // buscador de navbar por palabras
+  searchImages(event :Event): void {
+    event.preventDefault();
+    if (!this.search.trim()) return; // comprobar que existe busqueda real
+    
+    this.images = []; // limpiar la lista
+    this.mode = 'search'; // cambiar de modo para el titulo
+    this.apiService.getImageByWords(this.search).subscribe(response => {
+      this.images = response.results;
+      // compartir la lista filtrada con el servicio
+      this.apiService.setFilteredList(this.images);
+    });
+  }
 
-loadCars():void {
-  this.apiService.getCarsByCategory(this.category).subscribe(response => {
-    console.log('Respuesta completa de la API:', response);
-    this.cars = response.results;
-  })
-}
 }

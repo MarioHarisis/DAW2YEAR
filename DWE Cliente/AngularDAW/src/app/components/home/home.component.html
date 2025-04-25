@@ -2,21 +2,18 @@
   <!-- Hero Section con imagen de fondo -->
   <header class="hero bg-primary text-white text-center py-5">
     <div class="container">
-      <h1 class="display-4">Bienvenidos a la Galería de Coches</h1>
+      <h1 class="display-4">Galería de Imágenes</h1>
       <p class="lead">
-        Explora una variedad de coches increíbles, encuentra tu próximo vehículo
-        ideal
+        Explora una variedad de imágenes increíbles y de gran calidad.
       </p>
-      <a routerLink="/list" class="btn btn-light btn-lg"
-        >Ver todos los Coches</a
-      >
+      <a routerLink="/list" class="btn btn-light btn-lg">Explorar</a>
     </div>
   </header>
 
   <!-- Sección de tarjetas con imágenes -->
-  <section class="features py-5">
+  <section class="features py-4">
     <div class="container">
-      <h2 class="text-center mb-4">Características Destacadas</h2>
+      <h2 class="text-center mb-4">Categorías Destacadas</h2>
       <div class="row">
         <!-- Card 1 -->
         <div class="col-md-4 mb-4">
@@ -27,13 +24,13 @@
               alt="Imagen coche 1"
             />
             <div class="card-body">
-              <h5 class="card-title">Coches Superdeportivos</h5>
+              <h5 class="card-title">Hipercoches</h5>
               <p class="card-text">
                 Diseños aerodinámicos, motores potentes y tecnología avanzada.
               </p>
               <a
                 [routerLink]="['/list']"
-                [queryParams]="{ category: 'Supersport' }"
+                [queryParams]="{ category: 'Hypercars' }"
                 class="btn btn-primary"
                 >Ver más</a
               >
@@ -56,82 +53,7 @@
               </p>
               <a
                 [routerLink]="['/list']"
-                [queryParams]="{ category: 'Electric' }"
-                class="btn btn-primary"
-                >Ver más</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-4 mb-4">
-          <div class="card shadow">
-            <img
-              src="https://images.unsplash.com/photo-1728415916907-e91c1db8015c?q=80&w=1288&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="card-img-top"
-              alt="Imagen coche 3"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Coches de Lujo</h5>
-              <p class="card-text">
-                Hazte con los coches más exclusivos y de lujo del mercado.
-              </p>
-              <a
-                [routerLink]="['/list']"
-                [queryParams]="{ category: 'Luxury' }"
-                class="btn btn-primary"
-                >Ver más</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="features py-5">
-    <div class="container">
-      <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-4 mb-4">
-          <div class="card shadow">
-            <img
-              src="https://images.unsplash.com/photo-1660310477229-d03d8565f15d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="card-img-top"
-              alt="Imagen coche 1"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Coches Deportivos</h5>
-              <p class="card-text">
-                Explora los coches deportivos más rápidos y emocionantes.
-              </p>
-              <a
-                [routerLink]="['/list']"
-                [queryParams]="{ category: 'Sport' }"
-                class="btn btn-primary"
-                >Ver más</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-4 mb-4">
-          <div class="card shadow">
-            <img
-              src="https://images.unsplash.com/photo-1591293836027-e05b48473b67?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="card-img-top"
-              alt="Imagen coche 2"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Coches Clásicos</h5>
-              <p class="card-text">
-                Vehículos con carácter, llevan el legado de generaciones
-                pasadas.
-              </p>
-              <a
-                [routerLink]="['/list']"
-                [queryParams]="{ category: 'Classic' }"
+                [queryParams]="{ category: 'Electric car' }"
                 class="btn btn-primary"
                 >Ver más</a
               >
@@ -155,6 +77,80 @@
               <a
                 [routerLink]="['/list']"
                 [queryParams]="{ category: 'Offroad' }"
+                class="btn btn-primary"
+                >Ver más</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="features py-4">
+    <div class="container">
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img
+              src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="card-img-top"
+              alt="Imagen coche 1"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Deportes</h5>
+              <p class="card-text">
+                Explora los deportes más exigentes y emocionantes.
+              </p>
+              <a
+                [routerLink]="['/list']"
+                [queryParams]="{ category: 'Deporte' }"
+                class="btn btn-primary"
+                >Ver más</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img
+              src="https://images.unsplash.com/photo-1741851374655-3911c1b0e95a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="card-img-top"
+              alt="Imagen coche 2"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Wallpapers</h5>
+              <p class="card-text">
+                Fondos de pantalla de alta calidad, ideales para tu dispositivo.
+              </p>
+              <a
+                [routerLink]="['/list']"
+                [queryParams]="{ category: 'Wallpapers' }"
+                class="btn btn-primary"
+                >Ver más</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img
+              src="https://images.unsplash.com/photo-1505259341540-280be642cfaa?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="card-img-top"
+              alt="Imagen coche 3"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Arquitectura</h5>
+              <p class="card-text">
+                Potencia, resistencia y diseño para conquistar cualquier camino.
+              </p>
+              <a
+                [routerLink]="['/list']"
+                [queryParams]="{ category: 'Arquitectura' }"
                 class="btn btn-primary"
                 >Ver más</a
               >

@@ -14,34 +14,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link active" routerLink="/home"><h4>Home</h4></a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form class="d-flex" role="search" (submit)="searchImages($event)">
         <input
+          [(ngModel)]="search"
+          name="search"
           class="form-control me-2"
           type="search"
           placeholder="Search"
@@ -54,15 +33,19 @@
 </nav>
 
 <section class="features py-5">
-  <h2 class="text-white mb-4 text-center">{{ category }}</h2>
+  <!-- Cambiar titulo dependiendo del modo de busqueda -->
+  <h2 class="text-white text-center mb-4">
+    {{ mode === "category" ? "Categoría: " + category : "Búsqueda: " + search }}
+  </h2>
   <div class="container">
     <div class="row">
-      <div *ngFor="let item of cars" class="col-md-4 mb-4">
+      <div *ngFor="let item of images" class="col-md-4 mb-4">
         <div class="card shadow">
           <img
             src="{{ item.urls.small }}"
             class="card-img-top"
             alt="Imagen coche 1"
+            [routerLink]="['/detail', item.id]"
           />
         </div>
       </div>
