@@ -99,7 +99,7 @@ if (isset($_GET['id'])) {
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <a href="">
+                    <a href="perfil.php">
                         <h5>Volver a la lista</h5>
                     </a>
                     <div class="card rounded-3 crear-cuenta">

@@ -17,6 +17,10 @@ i, h2 {
     color: #8353d5 !important;
     text-decoration: none;
 }
+.edit-link {
+    color: white !important;
+    text-decoration: none;
+}
 /*fondo de la lista*/
 .list-container {
     background: rgb(13, 16, 32);

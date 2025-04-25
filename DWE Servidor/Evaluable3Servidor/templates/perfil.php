@@ -92,7 +92,7 @@ session_start();
                         // Dentro del bucle que genera las filas de la tabla:
                         echo "
                         <td>
-                            <a href='agregar.php?id=" . $row['id'] . "' class='btn btn-warning'>Editar</a>
+                            <a class='edit-link btn btn-warning' href='agregar.php?id=" . $row['id'] . "' class='btn btn-warning'>Editar</a>
                         </td>";
 
                         // Aquí agregamos un form para poder eliminar

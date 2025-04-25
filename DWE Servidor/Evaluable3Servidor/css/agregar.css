@@ -41,7 +41,7 @@ a {
 
     input, textarea {
         background-color: #3c4262 !important;
-        color: white; /* cambia esto si quieres otro color de texto */
+        color: white !important;
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
