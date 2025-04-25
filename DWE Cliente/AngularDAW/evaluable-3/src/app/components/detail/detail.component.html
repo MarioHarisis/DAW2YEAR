@@ -32,7 +32,6 @@
       />
       <!-- Contenedor de texto con overlay-info -->
       <div class="overlay-info text-white p-4">
-        <h2 class="mb-2">{{ image.alt_description || "Sin descripción" }}</h2>
         <p class="mb-0">
           Fotógrafo: <strong>{{ image.user?.name }}</strong>
         </p>
@@ -45,7 +44,8 @@
         <li
           class="list-group-item d-flex justify-content-between align-items-center"
         >
-          <strong>ID:</strong> {{ image.id }}
+          <strong>Descripcion:</strong
+          >{{ image.alt_description || "Sin descripción" }}
         </li>
         <li
           class="list-group-item d-flex justify-content-between align-items-center"
