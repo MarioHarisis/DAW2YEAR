@@ -1,25 +1,44 @@
 body {
-    font-family: "Comfortaa", serif;
+    background: linear-gradient(to right, #8353d5,#d45ad2, #ed397b);
+    font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 300;
     font-style: normal;
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
-}
-
-.btn-outline-secondary:hover,
-.btn-outline-light:hover,
-.btn-secondary:hover{
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    color: white;
 }
 
 a {
     color: white !important;
-    text-align: center;
+    text-decoration: none;
 }
 
-
-.card {
-    background-color: white;
-    box-shadow: 8px 8px 8px black;
-    color: #18181B;
+.card{
+    background: rgb(13, 16, 32);
+    min-height: 100%;
+    min-width: 350px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
+    border: black;
+    padding: 15px;
+    color: white;
 }
+
+  .btn-secondary {
+    background: linear-gradient(to right, #8353d5,#d45ad2, #ed397b);
+    width: 80%;
+    margin-top: 10px;
+    border: none;
+    }
+
+    h2 {
+        background: linear-gradient(to right, #8353d5, #d45ad2, #ed397b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+    input, textarea {
+        background-color: #3c4262 !important;
+        color: white !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
