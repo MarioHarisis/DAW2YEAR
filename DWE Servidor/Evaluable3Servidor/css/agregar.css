@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
+    background: black;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -8,11 +8,12 @@ body {
 }
 
 a {
-    color: white !important;
+    color: #8353d5 !important;
+    text-decoration: none;
 }
 
 .card{
-    background: linear-gradient(to right, #48495c,#0E0E11);
+    background: rgb(13, 16, 32);
     min-height: 100%;
     min-width: 350px;
     box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
@@ -21,11 +22,27 @@ a {
     color: white;
 }
 
-
-.btn-secondary:hover {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
-  }
-
   .btn-secondary {
-    background: linear-gradient(to right, #48495c,#0E0E11);
+    background: linear-gradient(to right, #8353d5,#d45ad2, #ed397b);
+    width: 80%;
+    margin-top: 10px;
+    border: none;
     }
+
+    i, h2 {
+        background: linear-gradient(to right, #8353d5, #d45ad2, #ed397b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+    h5 {
+        color: #8353d5;
+    }
+
+    input, textarea {
+        background-color: #3c4262 !important;
+        color: white; /* cambia esto si quieres otro color de texto */
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }

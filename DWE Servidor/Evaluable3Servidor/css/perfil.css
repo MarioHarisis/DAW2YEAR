@@ -7,12 +7,19 @@ body {
     background-color: #0E0E11;
 }
 /*links*/
-a {
-    color: white !important;
+i, h2 {
+    background: linear-gradient(to right, #8353d5, #d45ad2, #ed397b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  a {
+    color: #8353d5 !important;
+    text-decoration: none;
 }
 /*fondo de la lista*/
 .list-container {
-    background-color: #373843;
+    background: rgb(13, 16, 32);
     padding: 15px;
     border-radius: 15px;
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
@@ -20,9 +27,9 @@ a {
 
 /*cada fila de la lista*/
 .list-group-item {
-    background-color: #373843;
+    background: rgb(13, 16, 32);
     border: black;
-    color: #8c8ea4;
+    background: rgb(13, 16, 32);
 }
 
 .list-group-item:hover {
@@ -33,18 +40,15 @@ a {
     border: black;
   }
 
-.btn-secondary:hover {
-    background: linear-gradient(to right, #000000,#4b0e23, #800505);
-}
-
 .btn-secondary {
-    background: linear-gradient(to right, #48495c,#0E0E11);
-}
+    background: linear-gradient(to right, #8353d5,#d45ad2, #ed397b);
+    border: none;
+    }
 
 /* fondo de la tabla*/
 .table.table-bordered,
 .table.table-bordered td,
 .table.table-bordered th {
-    background-color: #373843;
+    background: rgb(13, 16, 32);
     color: white;
 }

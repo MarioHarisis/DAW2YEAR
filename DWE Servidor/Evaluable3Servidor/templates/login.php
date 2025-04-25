@@ -27,7 +27,7 @@ session_start();
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="home.php">
-        <i>TecnoEvents</i>
+        <i class="bi fs-2">TecnoEvents</i>
       </a>
       <button
         class="navbar-toggler"
@@ -42,7 +42,9 @@ session_start();
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="login.php">Iniciar sesión</a>
+            <a class="nav-link active" aria-current="page" href="login.php">
+              <h5>Iniciar sesión</h5>
+            </a>
           </li>
         </ul>
       </div>
@@ -187,7 +189,7 @@ session_start();
               <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div class="w-100 h-100">
                   <img
-                    src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1564522365984-c08ed1f78893?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Login image"
                     class="img-fluid w-100 h-100"
                     style="object-fit: cover; border-top-right-radius: .3rem; border-bottom-right-radius: .3rem;" />

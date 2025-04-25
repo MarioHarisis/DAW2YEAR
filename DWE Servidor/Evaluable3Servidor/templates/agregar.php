@@ -99,13 +99,15 @@ if (isset($_GET['id'])) {
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
+                    <a href="">
+                        <h5>Volver a la lista</h5>
+                    </a>
                     <div class="card rounded-3 crear-cuenta">
                         <div class="row g-0">
                             <div class="col-12">
                                 <div class="card-body p-md-5 mx-md-4">
                                     <div class="text-center">
-                                        <h2>TecnoEvents</h2>
-                                        <h4 class="mt-1 mb-5 pb-1">Agregar evento</h4>
+                                        <h2 class="mt-1 mb-5 pb-1">Agregar evento</h2>
                                     </div>
                                     <form action="agregar.php" method="POST">
                                         <h5 class="text-center">Introduce las características del evento</h5>

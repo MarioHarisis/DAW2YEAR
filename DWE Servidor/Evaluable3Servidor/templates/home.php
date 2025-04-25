@@ -49,9 +49,6 @@ session_start();
             <li class="nav-item">
               <a class="nav-link" href="login.php">Iniciar sesión</a>
             </li>
-            <li class="nav-item">
-              <p class="nav-link text-secondary">(inicia sesion para gestionar eventos)</p>
-            </li>
           <?php } ?>
         </ul>
       </div>

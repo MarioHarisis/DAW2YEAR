@@ -44,9 +44,6 @@ session_start();
                     <!-- Si la sesion esta iniciada se muestran los campos NO comunes -->
                     <?php if (isset($_SESSION['user'])) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="perfil.php">Mis propiedades</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="logout.php">Cerrar sesión</a>
                         </li>
                     <?php } else { ?>
